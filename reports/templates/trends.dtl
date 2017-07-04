@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trends>
+	<panel>
+		<backcolor>{{ backcolor }}</backcolor>
+        <title>
+            <text>{{ header }}</text>
+            <fontsize>{{ header_size }}</fontsize>
+        </title>
+	</panel>
+	<data>
+		<template>{{ template }}</template>
+		<source>{{ source }}</source>
+		<args>{{ args }}</args>
+	</data>
+	<indicators>
+		{% for indicator in indicators %}<indicator>
+			<name>{{ indicator.header }}</name>
+			<type>{{ indicator.type }}</type>
+			<group>{{ indicator.group }}</group>
+			<split>{{ indicator.split }}</split>
+			<inverted>{{ indicator.inverted }}</inverted>
+			<thickness>{{ indicator.thickness }}</thickness>
+			<linestyle>{{ indicator.linestyle }}</linestyle>
+			<color>{{ indicator.color }}</color>
+			<color2>{{ indicator.color2 }}</color2>
+			<symbolcode>{{ indicator.symbolcode }}</symbolcode>
+			<scale>{{ indicator.scale }}</scale>
+			<shift>{{ indicator.shift }}</shift>
+			<limits>
+				<lower>{{ indicator.lower_limit }}</lower>
+				<upper>{{ indicator.upper_limit }}</upper>
+			</limits>
+			<bounds>
+				<lower>{{ indicator.lower_bound }}</lower>
+				<upper>{{ indicator.upper_bound }}</upper>
+			</bounds>
+			<labels>
+				{% for label in indicator.labels %}<label>{{ label }}</label>
+				{% endfor %}
+			</labels>
+		</indicator>
+		{% endfor %}
+	</indicators>
+	<timescale>{{ timescale }}</timescale>
+</trends>
+

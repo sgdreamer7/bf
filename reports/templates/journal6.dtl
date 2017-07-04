@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/journal6.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header" colspan="11">Анализ шихты аглофабрики</th>
+				</tr>
+				<tr>
+					<th class="shift_header">Смена №</th>
+					<th class="row_index_header">Анализ</th>
+					<th class="datetime_header">Дата и время</th>
+					<th class="osn_charge_header">Основность шихты</th>
+					<th class="osn_return_header">Основность возврата</th>
+					<th class="cao_conc_header">CaO в концентрате</th>
+					<th class="sio2_conc_header">SiO<sub>2</sub> в концентрате</th>
+					<th class="mgo_ca_header">MgO в известняке</th>
+					<th class="cao_ca_header">CaO в известняке</th>
+					<th class="c_charge_header">Углерод шихты</th>
+					<th class="f_ca_header">Расход дробленого известняка</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datetime,osn_charge,osn_return,cao_conc,sio2_conc,mgo_ca,cao_ca,c_charge,f_ca in shift1_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift1_rows|length }}">1</td>
+					{% endif %}
+					{% if forloop.revcounter==1 %}
+					<td class="row_index">СР</td>
+					{% else %}
+					<td class="row_index">{{ forloop.counter }}</td>
+					{% endif %}
+					<td class="datetime">{{ datetime }}</td>
+					<td class="osn_charge">{{ osn_charge|floatformat:2 }}</td>
+					<td class="osn_return">{{ osn_return|floatformat:2 }}</td>
+					<td class="cao_conc">{{ cao_conc|floatformat:2 }}</td>
+					<td class="sio2_conc">{{ sio2_conc|floatformat:2 }}</td>
+					<td class="mgo_ca">{{ mgo_ca|floatformat:2 }}</td>
+					<td class="cao_ca">{{ cao_ca|floatformat:2 }}</td>
+					<td class="c_charge">{{ c_charge|floatformat:2 }}</td>
+					<td class="f_ca">{{ f_ca|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="11">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for datetime,osn_charge,osn_return,cao_conc,sio2_conc,mgo_ca,cao_ca,c_charge,f_ca in shift2_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift2_rows|length }}">2</td>
+					{% endif %}
+					{% if forloop.revcounter==1 %}
+					<td class="row_index">СР</td>
+					{% else %}
+					<td class="row_index">{{ forloop.counter }}</td>
+					{% endif %}
+					<td class="datetime">{{ datetime }}</td>
+					<td class="osn_charge">{{ osn_charge|floatformat:2 }}</td>
+					<td class="osn_return">{{ osn_return|floatformat:2 }}</td>
+					<td class="cao_conc">{{ cao_conc|floatformat:2 }}</td>
+					<td class="sio2_conc">{{ sio2_conc|floatformat:2 }}</td>
+					<td class="mgo_ca">{{ mgo_ca|floatformat:2 }}</td>
+					<td class="cao_ca">{{ cao_ca|floatformat:2 }}</td>
+					<td class="c_charge">{{ c_charge|floatformat:2 }}</td>
+					<td class="f_ca">{{ f_ca|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="11">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for datetime,osn_charge,osn_return,cao_conc,sio2_conc,mgo_ca,cao_ca,c_charge,f_ca in shift3_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift3_rows|length }}">3</td>
+					{% endif %}
+					{% if forloop.revcounter==1 %}
+					<td class="row_index">СР</td>
+					{% else %}
+					<td class="row_index">{{ forloop.counter }}</td>
+					{% endif %}
+					<td class="datetime">{{ datetime }}</td>
+					<td class="osn_charge">{{ osn_charge|floatformat:2 }}</td>
+					<td class="osn_return">{{ osn_return|floatformat:2 }}</td>
+					<td class="cao_conc">{{ cao_conc|floatformat:2 }}</td>
+					<td class="sio2_conc">{{ sio2_conc|floatformat:2 }}</td>
+					<td class="mgo_ca">{{ mgo_ca|floatformat:2 }}</td>
+					<td class="cao_ca">{{ cao_ca|floatformat:2 }}</td>
+					<td class="c_charge">{{ c_charge|floatformat:2 }}</td>
+					<td class="f_ca">{{ f_ca|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="11">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header" colspan="9">Анализ кокса</th>
+				</tr>
+				<tr>
+					<th class="producer_header">Завод-изготовитель</th>
+					<th class="probe_header">№ пробы</th>
+					<th class="datetime2_header">Дата и время</th>
+					<th class="moisture_header">Влага</th>
+					<th class="ash_header">Зола</th>
+					<th class="s_header">Сера</th>
+					<th class="lv_header">ЛВ</th>
+					<th class="m25_header">М-25</th>
+					<th class="m10_header">М-10</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for producer,probe,datetime2,moisture,ash,s,lv,m25,m10 in coke_rows %}
+				<tr>
+					<td class="producer">{{ producer }}</td>
+					<td class="probe">{{ probe|floatformat:0 }}</td>
+					<td class="datetime2">{{ datetime2 }}</td>
+					<td class="moisture">{{ moisture|floatformat:2 }}</td>
+					<td class="ash">{{ ash|floatformat:2 }}</td>
+					<td class="s">{{ s|floatformat:2 }}</td>
+					<td class="lv">{{ lv|floatformat:2 }}</td>
+					<td class="m25">{{ m25|floatformat:2 }}</td>
+					<td class="m10">{{ m10|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="9">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header" colspan="9">Колошниковая пыль</th>
+				</tr>
+				<tr>
+					<th class="ash1_header">На какой подаче выдана</th>
+					<th class="ash2_header">Количество подач</th>
+					<th class="ash3_header">Масса пыли, т</th>
+					<th class="ash4_header">Вынос пыли, кг/подачу</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="ash1">{{ ash1|floatformat:0 }}</td>
+					<td class="ash2">{{ ash2|floatformat:0 }}</td>
+					<td class="ash3">{{ ash3|floatformat:2 }}</td>
+					<td class="ash4">{{ ash4|floatformat:1 }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

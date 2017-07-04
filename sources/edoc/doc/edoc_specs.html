@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Модуль edoc_specs</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Обзор</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Модуль edoc_specs</h1>
+<ul class="index"><li><a href="#description">Описание</a></li><li><a href="#types">Типы данных</a></li><li><a href="#index">Список функций</a></li><li><a href="#functions">Описание функций</a></li></ul>EDoc interface to Erlang specifications and types.
+
+
+<h2><a name="description">Описание</a></h2>EDoc interface to Erlang specifications and types.
+<h2><a name="types">Типы данных</a></h2>
+
+<h3 class="typedecl"><a name="type-entries">entries()</a></h3>
+<p><tt>entries() = [<a href="#type-entry">entry()</a>]</tt></p>
+
+
+<h3 class="typedecl"><a name="type-entry">entry()</a></h3>
+<p><tt>entry() = #entry{}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-module_info">module_info()</a></h3>
+<p><tt>module_info() = #module{}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-syntaxTree">syntaxTree()</a></h3>
+<p><tt>syntaxTree() = <a href="erl_syntax.html#type-syntaxTree">erl_syntax:syntaxTree()</a></tt></p>
+
+
+<h3 class="typedecl"><a name="type-tag_kind">tag_kind()</a></h3>
+<p><tt>tag_kind() = type | spec | unknown</tt></p>
+
+
+<h2><a name="index">Список функций</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#add_data-4">add_data/4</a></td><td>Create tags a la EDoc for Erlang specifications and types.</td></tr>
+<tr><td valign="top"><a href="#docs-2">docs/2</a></td><td>Find comments after -type/-opaque declarations.</td></tr>
+<tr><td valign="top"><a href="#dummy_spec-1">dummy_spec/1</a></td><td>Create a #tag{} record where data is a string with the name of
+  the given Erlang spec and an empty list of arguments.</td></tr>
+<tr><td valign="top"><a href="#is_tag-1">is_tag/1</a></td><td>Return <code>true</code> if <code>Tag</code> is one of the specification and type
+  attribute tags recognized by the Erlang compiler.</td></tr>
+<tr><td valign="top"><a href="#spec-2">spec/2</a></td><td>Convert an Erlang spec to EDoc representation.</td></tr>
+<tr><td valign="top"><a href="#tag-1">tag/1</a></td><td>Return the kind of the attribute tag.</td></tr>
+<tr><td valign="top"><a href="#type-2">type/2</a></td><td>Convert an Erlang type to EDoc representation.</td></tr>
+</table>
+
+<h2><a name="functions">Описание функций</a></h2>
+
+<h3 class="function"><a name="add_data-4">add_data/4</a></h3>
+<div class="spec">
+<p><tt>add_data(Entries::<a href="#type-entries">entries()</a>, Options::<a href="proplists.html#type-proplist">proplists:proplist()</a>, File::<a href="file.html#type-filename">file:filename()</a>, Module::<a href="#type-module_info">module_info()</a>) -&gt; <a href="#type-entries">entries()</a></tt><br></p>
+</div><p>Create tags a la EDoc for Erlang specifications and types.
+  Exported types and types used (indirectly) by Erlang specs are
+  added to the entries.</p>
+
+<h3 class="function"><a name="docs-2">docs/2</a></h3>
+<div class="spec">
+<p><tt>docs(Forms::[<a href="#type-syntaxTree">syntaxTree()</a>], CommentFun::fun(([<a href="#type-syntaxTree">syntaxTree()</a>], Line::term()) -&gt; #tag{})) -&gt; dict()</tt><br></p>
+</div><p>Find comments after -type/-opaque declarations.
+  Postcomments "inside" the type are skipped.</p>
+
+<h3 class="function"><a name="dummy_spec-1">dummy_spec/1</a></h3>
+<div class="spec">
+<p><tt>dummy_spec(Form::<a href="#type-syntaxTree">syntaxTree()</a>) -&gt; #tag{}</tt><br></p>
+</div><p>Create a #tag{} record where data is a string with the name of
+  the given Erlang spec and an empty list of arguments.</p>
+
+<h3 class="function"><a name="is_tag-1">is_tag/1</a></h3>
+<div class="spec">
+<p><tt>is_tag(Tag::atom()) -&gt; boolean()</tt><br></p>
+</div><p>Return <code>true</code> if <code>Tag</code> is one of the specification and type
+  attribute tags recognized by the Erlang compiler.</p>
+
+<h3 class="function"><a name="spec-2">spec/2</a></h3>
+<div class="spec">
+<p><tt>spec(Form::<a href="#type-syntaxTree">syntaxTree()</a>, ClauseN::pos_integer()) -&gt; #tag{}</tt><br></p>
+</div><p>Convert an Erlang spec to EDoc representation.</p>
+
+<h3 class="function"><a name="tag-1">tag/1</a></h3>
+<div class="spec">
+<p><tt>tag(Tag::atom()) -&gt; <a href="#type-tag_kind">tag_kind()</a></tt><br></p>
+</div><p>Return the kind of the attribute tag.</p>
+
+<h3 class="function"><a name="type-2">type/2</a></h3>
+<div class="spec">
+<p><tt>type(Form::<a href="#type-syntaxTree">syntaxTree()</a>, TypeDocs::dict()) -&gt; #tag{}</tt><br></p>
+</div><p>Convert an Erlang type to EDoc representation.
+  TypeDocs is a dict of {Name, Doc}.
+  Note: #t_typedef.name is set to {record, R} for record types.</p>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Обзор</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Сгенерировано EDoc, Nov 1 2012, 22:53:02.</i></p>
+</body>
+</html>

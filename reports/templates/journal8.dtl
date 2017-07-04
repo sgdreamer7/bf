@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/journal8.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header">Смена №</th>
+					<th class="hour_header">Час</th>
+					<th class="fdg_gss_header">Расход доменного газа, м<sup>3</sup>/час</th>
+					<th class="fpg_gss_header">Расход природного газа, м<sup>3</sup>/час</th>
+					<th class="psg_header">Давление смешанного газа, кгс/см<sup>2</sup></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for hour_value,fdg_gss,fpg_gss,psg in shift1_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift1_rows|length }}">1</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="fdg_gss">{{ fdg_gss|floatformat:0 }}</td>
+					<td class="fpg_gss">{{ fpg_gss|floatformat:2 }}</td>
+					<td class="psg">{{ psg|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="5">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for fdg_gss,fpg_gss,psg in shift1_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 1</td>
+					<td class="fdg_gss">{{ fdg_gss|floatformat:0 }}</td>
+					<td class="fpg_gss">{{ fpg_gss|floatformat:2 }}</td>
+					<td class="psg">{{ psg|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="5">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,fdg_gss,fpg_gss,psg in shift2_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift2_rows|length }}">2</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="fdg_gss">{{ fdg_gss|floatformat:0 }}</td>
+					<td class="fpg_gss">{{ fpg_gss|floatformat:2 }}</td>
+					<td class="psg">{{ psg|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="5">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for fdg_gss,fpg_gss,psg in shift2_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 2</td>
+					<td class="fdg_gss">{{ fdg_gss|floatformat:0 }}</td>
+					<td class="fpg_gss">{{ fpg_gss|floatformat:2 }}</td>
+					<td class="psg">{{ psg|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="5">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,fdg_gss,fpg_gss,psg in shift3_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift3_rows|length }}">3</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="fdg_gss">{{ fdg_gss|floatformat:0 }}</td>
+					<td class="fpg_gss">{{ fpg_gss|floatformat:2 }}</td>
+					<td class="psg">{{ psg|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="5">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for fdg_gss,fpg_gss,psg in shift3_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 3</td>
+					<td class="fdg_gss">{{ fdg_gss|floatformat:0 }}</td>
+					<td class="fpg_gss">{{ fpg_gss|floatformat:2 }}</td>
+					<td class="psg">{{ psg|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="5">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for fdg_gss,fpg_gss,psg in day_row %}
+				<tr>
+					<td class="shift" colspan="2">За сутки</td>
+					<td class="fdg_gss">{{ fdg_gss|floatformat:0 }}</td>
+					<td class="fpg_gss">{{ fpg_gss|floatformat:2 }}</td>
+					<td class="psg">{{ psg|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="5">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/journal2.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header" rowspan="2">Смена №</th>
+					<th class="hour_header" rowspan="2">Час</th>
+					<th class="tkg_header" colspan="6">Температура колошникового газа</th>
+					<th class="tpp_header" colspan="6">Температура периферии</th>
+				</tr>
+				<tr>
+					<th class="tkg_1_header">1</th>
+					<th class="tkg_2_header">2</th>
+					<th class="tkg_3_header">3</th>
+					<th class="tkg_4_header">4</th>
+					<th class="tkg_delta_header">dT</th>
+					<th class="tkg_average_header">средн</th>
+					<th class="tpp_max_header">MAX</th>
+					<th class="tpp_max_num_header">№</th>
+					<th class="tpp_min_header">MIN</th>
+					<th class="tpp_min_num_header">№</th>
+					<th class="tpp_delta_header">dT</th>
+					<th class="tpp_average_header">средн</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for hour_value,tkg_1,tkg_2,tkg_3,tkg_4,tkg_delta,tkg_average,tpp_max,tpp_max_num,tpp_min,tpp_min_num,tpp_delta,tpp_average in shift1_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift1_rows|length }}">1</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="tkg_1">{{ tkg_1|floatformat:0 }}</td>
+					<td class="tkg_2">{{ tkg_2|floatformat:0 }}</td>
+					<td class="tkg_3">{{ tkg_3|floatformat:0 }}</td>
+					<td class="tkg_4">{{ tkg_4|floatformat:0 }}</td>
+					<td class="tkg_delta">{{ tkg_delta|floatformat:0 }}</td>
+					<td class="tkg_average">{{ tkg_average|floatformat:0 }}</td>
+					<td class="tpp_max">{{ tpp_max|floatformat:0 }}</td>
+					<td class="tpp_max_num">{{ tpp_max_num|floatformat:0 }}</td>
+					<td class="tpp_min">{{ tpp_min|floatformat:0 }}</td>
+					<td class="tpp_min_num">{{ tpp_min_num|floatformat:0 }}</td>
+					<td class="tpp_delta">{{ tpp_delta|floatformat:0 }}</td>
+					<td class="tpp_average">{{ tpp_average|floatformat:0 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for tkg_1,tkg_2,tkg_3,tkg_4,tkg_delta,tkg_average,tpp_max,tpp_max_num,tpp_min,tpp_min_num,tpp_delta,tpp_average in shift1_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 1</td>
+					<td class="tkg_1">{{ tkg_1|floatformat:0 }}</td>
+					<td class="tkg_2">{{ tkg_2|floatformat:0 }}</td>
+					<td class="tkg_3">{{ tkg_3|floatformat:0 }}</td>
+					<td class="tkg_4">{{ tkg_4|floatformat:0 }}</td>
+					<td class="tkg_delta">{{ tkg_delta|floatformat:0 }}</td>
+					<td class="tkg_average">{{ tkg_average|floatformat:0 }}</td>
+					<td class="tpp_max">{{ tpp_max|floatformat:0 }}</td>
+					<td class="tpp_max_num">{{ tpp_max_num|floatformat:0 }}</td>
+					<td class="tpp_min">{{ tpp_min|floatformat:0 }}</td>
+					<td class="tpp_min_num">{{ tpp_min_num|floatformat:0 }}</td>
+					<td class="tpp_delta">{{ tpp_delta|floatformat:0 }}</td>
+					<td class="tpp_average">{{ tpp_average|floatformat:0 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,tkg_1,tkg_2,tkg_3,tkg_4,tkg_delta,tkg_average,tpp_max,tpp_max_num,tpp_min,tpp_min_num,tpp_delta,tpp_average in shift2_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift2_rows|length }}">2</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="tkg_1">{{ tkg_1|floatformat:0 }}</td>
+					<td class="tkg_2">{{ tkg_2|floatformat:0 }}</td>
+					<td class="tkg_3">{{ tkg_3|floatformat:0 }}</td>
+					<td class="tkg_4">{{ tkg_4|floatformat:0 }}</td>
+					<td class="tkg_delta">{{ tkg_delta|floatformat:0 }}</td>
+					<td class="tkg_average">{{ tkg_average|floatformat:0 }}</td>
+					<td class="tpp_max">{{ tpp_max|floatformat:0 }}</td>
+					<td class="tpp_max_num">{{ tpp_max_num|floatformat:0 }}</td>
+					<td class="tpp_min">{{ tpp_min|floatformat:0 }}</td>
+					<td class="tpp_min_num">{{ tpp_min_num|floatformat:0 }}</td>
+					<td class="tpp_delta">{{ tpp_delta|floatformat:0 }}</td>
+					<td class="tpp_average">{{ tpp_average|floatformat:0 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for tkg_1,tkg_2,tkg_3,tkg_4,tkg_delta,tkg_average,tpp_max,tpp_max_num,tpp_min,tpp_min_num,tpp_delta,tpp_average in shift2_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 2</td>
+					<td class="tkg_1">{{ tkg_1|floatformat:0 }}</td>
+					<td class="tkg_2">{{ tkg_2|floatformat:0 }}</td>
+					<td class="tkg_3">{{ tkg_3|floatformat:0 }}</td>
+					<td class="tkg_4">{{ tkg_4|floatformat:0 }}</td>
+					<td class="tkg_delta">{{ tkg_delta|floatformat:0 }}</td>
+					<td class="tkg_average">{{ tkg_average|floatformat:0 }}</td>
+					<td class="tpp_max">{{ tpp_max|floatformat:0 }}</td>
+					<td class="tpp_max_num">{{ tpp_max_num|floatformat:0 }}</td>
+					<td class="tpp_min">{{ tpp_min|floatformat:0 }}</td>
+					<td class="tpp_min_num">{{ tpp_min_num|floatformat:0 }}</td>
+					<td class="tpp_delta">{{ tpp_delta|floatformat:0 }}</td>
+					<td class="tpp_average">{{ tpp_average|floatformat:0 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,tkg_1,tkg_2,tkg_3,tkg_4,tkg_delta,tkg_average,tpp_max,tpp_max_num,tpp_min,tpp_min_num,tpp_delta,tpp_average in shift3_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift3_rows|length }}">3</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="tkg_1">{{ tkg_1|floatformat:0 }}</td>
+					<td class="tkg_2">{{ tkg_2|floatformat:0 }}</td>
+					<td class="tkg_3">{{ tkg_3|floatformat:0 }}</td>
+					<td class="tkg_4">{{ tkg_4|floatformat:0 }}</td>
+					<td class="tkg_delta">{{ tkg_delta|floatformat:0 }}</td>
+					<td class="tkg_average">{{ tkg_average|floatformat:0 }}</td>
+					<td class="tpp_max">{{ tpp_max|floatformat:0 }}</td>
+					<td class="tpp_max_num">{{ tpp_max_num|floatformat:0 }}</td>
+					<td class="tpp_min">{{ tpp_min|floatformat:0 }}</td>
+					<td class="tpp_min_num">{{ tpp_min_num|floatformat:0 }}</td>
+					<td class="tpp_delta">{{ tpp_delta|floatformat:0 }}</td>
+					<td class="tpp_average">{{ tpp_average|floatformat:0 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for tkg_1,tkg_2,tkg_3,tkg_4,tkg_delta,tkg_average,tpp_max,tpp_max_num,tpp_min,tpp_min_num,tpp_delta,tpp_average in shift3_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 3</td>
+					<td class="tkg_1">{{ tkg_1|floatformat:0 }}</td>
+					<td class="tkg_2">{{ tkg_2|floatformat:0 }}</td>
+					<td class="tkg_3">{{ tkg_3|floatformat:0 }}</td>
+					<td class="tkg_4">{{ tkg_4|floatformat:0 }}</td>
+					<td class="tkg_delta">{{ tkg_delta|floatformat:0 }}</td>
+					<td class="tkg_average">{{ tkg_average|floatformat:0 }}</td>
+					<td class="tpp_max">{{ tpp_max|floatformat:0 }}</td>
+					<td class="tpp_max_num">{{ tpp_max_num|floatformat:0 }}</td>
+					<td class="tpp_min">{{ tpp_min|floatformat:0 }}</td>
+					<td class="tpp_min_num">{{ tpp_min_num|floatformat:0 }}</td>
+					<td class="tpp_delta">{{ tpp_delta|floatformat:0 }}</td>
+					<td class="tpp_average">{{ tpp_average|floatformat:0 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for tkg_1,tkg_2,tkg_3,tkg_4,tkg_delta,tkg_average,tpp_max,tpp_max_num,tpp_min,tpp_min_num,tpp_delta,tpp_average in day_row %}
+				<tr>
+					<td class="shift" colspan="2">За сутки</td>
+					<td class="tkg_1">{{ tkg_1|floatformat:0 }}</td>
+					<td class="tkg_2">{{ tkg_2|floatformat:0 }}</td>
+					<td class="tkg_3">{{ tkg_3|floatformat:0 }}</td>
+					<td class="tkg_4">{{ tkg_4|floatformat:0 }}</td>
+					<td class="tkg_delta">{{ tkg_delta|floatformat:0 }}</td>
+					<td class="tkg_average">{{ tkg_average|floatformat:0 }}</td>
+					<td class="tpp_max">{{ tpp_max|floatformat:0 }}</td>
+					<td class="tpp_max_num">{{ tpp_max_num|floatformat:0 }}</td>
+					<td class="tpp_min">{{ tpp_min|floatformat:0 }}</td>
+					<td class="tpp_min_num">{{ tpp_min_num|floatformat:0 }}</td>
+					<td class="tpp_delta">{{ tpp_delta|floatformat:0 }}</td>
+					<td class="tpp_average">{{ tpp_average|floatformat:0 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

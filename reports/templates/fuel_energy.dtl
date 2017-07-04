@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/fuel_energy.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата и время: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Начало:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td class="header_date_title2">Окончание:</td>
+				<td class="header_date_data2"><span class="data">{{ report_date2 }}</span></td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="pos_number_header">&nbsp;</th>
+					<th class="name_header">Наименование ТЭР</th>
+					<th class="pressure_header">P, кгс/см<sup>2</sup></th>
+					<th class="temperature_header">T, <sup>o</sup>C</th>
+					<th class="flow_header">F, м<sup>3</sup>/сут.<br/>(т/сут./пар)</th>
+					<th class="flow_month_header">F, м<sup>3</sup>/с начала месяца(т/с начала месяца/пар)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th class="pos_number">1</th>
+					<td class="title_names">Природный газ на печь</td>
+					<td class="pressure">{{ PPG_HD|floatformat:1 }}</td>
+					<td class="temperature">{{ TPG_HD|floatformat:0 }}</td>
+					<td class="flow">{{ FPG_HD|floatformat:0 }}</td>
+					<td class="flow_month">{{ FPG_HD_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">2</th>
+					<td class="title_names">Природный газ на ВН (ГСС)</td>
+					<td class="pressure">{{ PPG_GSS|floatformat:1 }}</td>
+					<td class="temperature">{{ TPG_GSS|floatformat:0 }}</td>
+					<td class="flow">{{ FPG_GSS|floatformat:0 }}</td>
+					<td class="flow_month">{{ FPG_GSS_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">3</th>
+					<td class="title_names">Природный газ на ремонтные нужды</td>
+					<td class="pressure">{{ PPG_GEL|floatformat:1 }}</td>
+					<td class="temperature">{{ TPG_GEL|floatformat:0 }}</td>
+					<td class="flow">{{ FPG_GEL|floatformat:0 }}</td>
+					<td class="flow_month">{{ FPG_GEL_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="pos_number_empty">&nbsp;</td>
+					<td class="title_names_totals" colspan="3">Итого природного газа</td>
+					<td class="flow_totals">{{ FPG_TOTAL|floatformat:0 }}</td>
+					<td class="flow_month_totals">{{ FPG_MONTH_TOTAL|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">4</th>
+					<td class="title_names">Доменный газ</td>
+					<td class="pressure">{{ PDG|floatformat:4 }}</td>
+					<td class="temperature">{{ TDG|floatformat:0 }}</td>
+					<td class="flow">{{ FDG|floatformat:0 }}</td>
+					<td class="flow_month">{{ FDG_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">5</th>
+					<td class="title_names">Дутье холодное с коррекцией</td>
+					<td class="pressure">{{ PHD|floatformat:1 }}</td>
+					<td class="temperature">{{ THD|floatformat:0 }}</td>
+					<td class="flow">{{ FHD|floatformat:0 }}</td>
+					<td class="flow_month">{{ FHD_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">6</th>
+					<td class="title_names">Подающий водовод I<br/>(вода техническая ввод 1)</td>
+					<td class="pressure">{{ PVD_1|floatformat:1 }}</td>
+					<td class="temperature">&nbsp;</td>
+					<td class="flow">{{ FVD_1|floatformat:0 }}</td>
+					<td class="flow_month">{{ FVD_1_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">7</th>
+					<td class="title_names">Подающий водовод II<br/>(вода техническая ввод 2)</td>
+					<td class="pressure">{{ PVD_2|floatformat:1 }}</td>
+					<td class="temperature">&nbsp;</td>
+					<td class="flow">{{ FVD_2|floatformat:0 }}</td>
+					<td class="flow_month">{{ FVD_2_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="pos_number_empty">&nbsp;</td>
+					<td class="title_names_totals" colspan="3">Итого воды (технической)</td>
+					<td class="flow_totals">{{ FVD_TOTAL|floatformat:0 }}</td>
+					<td class="flow_month_totals">{{ FVD_MONTH_TOTAL|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">8</th>
+					<td class="title_names">Питательная вода I подвод<br/>(хим. очищенная вода<br/>на СИО шахты печи))</td>
+					<td class="pressure">{{ PVD_PIT_1|floatformat:3 }}</td>
+					<td class="temperature">&nbsp;</td>
+					<td class="flow">{{ FVD_PIT_1|floatformat:1 }}</td>
+					<td class="flow_month">{{ FVD_PIT_1_MONTH|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">9</th>
+					<td class="title_names">Питательная вода II подвод<br/>(хим. очищенная вода<br/>на СИО шахты печи))</td>
+					<td class="pressure">{{ PVD_PIT_2|floatformat:3 }}</td>
+					<td class="temperature">&nbsp;</td>
+					<td class="flow">{{ FVD_PIT_2|floatformat:1 }}</td>
+					<td class="flow_month">{{ FVD_PIT_2_MONTH|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<td class="pos_number_empty">&nbsp;</td>
+					<td class="title_names_totals" colspan="3">Итого питательной воды<br/>(хим. очищенной воды<br/>на СИО шахты печи))</td>
+					<td class="flow_totals">{{ FVD_PIT_TOTAL|floatformat:1 }}</td>
+					<td class="flow_month_totals">{{ FVD_PIT_MONTH_TOTAL|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">10</th>
+					<td class="title_names">Питательная вода I подвод<br/>(хим. очищенная вода<br/>на СИО ВН))</td>
+					<td class="pressure">{{ PVD_PIT_VN_1|floatformat:3 }}</td>
+					<td class="temperature">&nbsp;</td>
+					<td class="flow">{{ FVD_PIT_VN_1|floatformat:1 }}</td>
+					<td class="flow_month">{{ FVD_PIT_VN_1_MONTH|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">11</th>
+					<td class="title_names">Питательная вода II подвод<br/>(хим. очищенная вода<br/>на СИО ВН))</td>
+					<td class="pressure">{{ PVD_PIT_VN_2|floatformat:3 }}</td>
+					<td class="temperature">&nbsp;</td>
+					<td class="flow">{{ FVD_PIT_VN_2|floatformat:1 }}</td>
+					<td class="flow_month">{{ FVD_PIT_VN_2_MONTH|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<td class="pos_number_empty">&nbsp;</td>
+					<td class="title_names_totals" colspan="3">Итого питательной воды<br/>(хим. очищенной воды<br/>на СИО ВН))</td>
+					<td class="flow_totals">{{ FVD_PIT_VN_TOTAL|floatformat:1 }}</td>
+					<td class="flow_month_totals">{{ FVD_PIT_VN_MONTH_TOTAL|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<td class="pos_number_empty">&nbsp;</td>
+					<td class="title_names_totals" colspan="3">Итого питательной воды<br/>(хим. очищенной воды)</td>
+					<td class="flow_totals">{{ FVD_PIT_TOTAL_TOTAL|floatformat:1 }}</td>
+					<td class="flow_month_totals">{{ FVD_PIT_TOTAL_MONTH_TOTAL|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">12</th>
+					<td class="title_names">Пар СИО шахты печи №1</td>
+					<td class="pressure">{{ PPR_SIO_1|floatformat:1 }}</td>
+					<td class="temperature">{{ TPR_SIO_1|floatformat:0 }}</td>
+					<td class="flow">{{ FPR_SIO_1|floatformat:1 }}</td>
+					<td class="flow_month">{{ FPR_SIO_1_MONTH|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">13</th>
+					<td class="title_names">Пар СИО шахты печи №2</td>
+					<td class="pressure">{{ PPR_SIO_2|floatformat:1 }}</td>
+					<td class="temperature">{{ TPR_SIO_2|floatformat:0 }}</td>
+					<td class="flow">{{ FPR_SIO_2|floatformat:1 }}</td>
+					<td class="flow_month">{{ FPR_SIO_2_MONTH|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">14</th>
+					<td class="title_names">Пар СИО ВН</td>
+					<td class="pressure">{{ PPR_SIO_VN|floatformat:1 }}</td>
+					<td class="temperature">{{ TPR_SIO_VN|floatformat:0 }}</td>
+					<td class="flow">{{ FPR_SIO_VN|floatformat:1 }}</td>
+					<td class="flow_month">{{ FPR_SIO_VN_MONTH|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<td class="pos_number_empty">&nbsp;</td>
+					<td class="title_names_totals" colspan="3">Итого пара СИО</td>
+					<td class="flow_totals">{{ FPR_SIO_TOTAL|floatformat:1 }}</td>
+					<td class="flow_month_totals">{{ FPR_SIO_MONTH_TOTAL|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">15</th>
+					<td class="title_names">Пар на увлажнение</td>
+					<td class="pressure">{{ PPR_HD|floatformat:1 }}</td>
+					<td class="temperature">{{ TPR_HD|floatformat:0 }}</td>
+					<td class="flow">{{ FPR_HD|floatformat:1 }}</td>
+					<td class="flow_month">{{ FPR_HD_MONTH|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">16</th>
+					<td class="title_names">Пар на печь</td>
+					<td class="pressure">{{ PPR|floatformat:3 }}</td>
+					<td class="temperature">{{ TPR|floatformat:0 }}</td>
+					<td class="flow">{{ FPR|floatformat:3 }}</td>
+					<td class="flow_month">{{ FPR_MONTH|floatformat:3 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">17</th>
+					<td class="title_names">Сжатый (компрессорный) воздух</td>
+					<td class="pressure">{{ PVZ|floatformat:1 }}</td>
+					<td class="temperature">{{ TVZ|floatformat:0 }}</td>
+					<td class="flow">{{ FVZ|floatformat:0 }}</td>
+					<td class="flow_month">{{ FVZ_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">18</th>
+					<td class="title_names">Азот на печь и блок ВН</td>
+					<td class="pressure">{{ PAZ|floatformat:1 }}</td>
+					<td class="temperature">{{ TAZ|floatformat:0 }}</td>
+					<td class="flow">{{ FAZ|floatformat:1 }}</td>
+					<td class="flow_month">{{ FAZ_MONTH|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">19</th>
+					<td class="title_names">Сжатый осушенный воздух</td>
+					<td class="pressure">{{ PVZ_OS|floatformat:1 }}</td>
+					<td class="temperature">{{ TVZ_OS|floatformat:0 }}</td>
+					<td class="flow">{{ FVZ_OS|floatformat:0 }}</td>
+					<td class="flow_month">{{ FVZ_OS_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">20</th>
+					<td class="title_names">Температура колошниковых газов</td>
+					<td class="temperature" colspan="4">{{ TKG|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">21</th>
+					<td class="title_names">Температура периферии</td>
+					<td class="temperature" colspan="4">{{ TPP|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">22</th>
+					<td class="title_names">Кислород на собственные нужды</td>
+					<td class="flow" colspan="2">&nbsp;</td>
+					<td class="flow" >{{ FO2|floatformat:0 }}</td>
+					<td class="flow_month">{{ FO2_MONTH|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">23</th>
+					<td class="title_names">Температура горячего дутья</td>
+					<td class="temperature" colspan="4">{{ TGD|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<th class="pos_number">24</th>
+					<td class="title_names">Доменный газ на блок воздухонагревателей</td>
+					<td class="flow" colspan="2">&nbsp;</td>
+					<td class="flow" >{{ FDG_GSS|floatformat:0 }}</td>
+					<td class="flow_month">{{ FDG_GSS_MONTH|floatformat:0 }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<p class="host">Протокол сформирован на сервере: {{ host }}. Дата и время формирования протокола: {{ build_date }}</p>
+	</body>
+</html>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/journal10.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="header_date_title" colspan="4">Диаметр воздушных фурм, мм: <span class="data">160</span></td>
+			</tr>
+			<tr>
+				<td class="header_date_title" colspan="4">Число работающих фурм за смену 1, шт: <span class="data">{{ shift1_sum }}</span></td>
+			</tr>
+			<tr>
+				<td class="header_date_title" colspan="4">Число работающих фурм за смену 2, шт: <span class="data">{{ shift2_sum }}</span></td>
+			</tr>
+			<tr>
+				<td class="header_date_title" colspan="4">Число работающих фурм за смену 3, шт: <span class="data">{{ shift3_sum }}</span></td>
+			</tr>
+			<tr>
+				<td class="header_date_title" colspan="4">Число работающих фурм за сутки, шт: <span class="data">{{ day_sum }}</span></td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header" rowspan="2">Смена №</th>
+					<th class="hour_header" rowspan="2">Час</th>
+					<th class="furms_header" colspan="20">Номер фурмы</th>
+				</tr>
+				<tr>
+					<th class="furm_header">1</th>
+					<th class="furm_header">2</th>
+					<th class="furm_header">3</th>
+					<th class="furm_header">4</th>
+					<th class="furm_header">5</th>
+					<th class="furm_header">6</th>
+					<th class="furm_header">7</th>
+					<th class="furm_header">8</th>
+					<th class="furm_header">9</th>
+					<th class="furm_header">10</th>
+					<th class="furm_header">11</th>
+					<th class="furm_header">12</th>
+					<th class="furm_header">13</th>
+					<th class="furm_header">14</th>
+					<th class="furm_header">15</th>
+					<th class="furm_header">16</th>
+					<th class="furm_header">17</th>
+					<th class="furm_header">18</th>
+					<th class="furm_header">19</th>
+					<th class="furm_header">20</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for hour_value,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20 in shift1_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift1_rows|length }}">1</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="furm">{% if f1==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f2==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f3==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f4==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f5==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f6==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f7==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f8==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f9==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f10==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f11==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f12==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f13==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f14==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f15==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f16==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f17==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f18==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f19==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f20==1 %}Н{% else %}З{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="22">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20 in shift1_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 1</td>
+					<td class="furm">{% if f1==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f2==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f3==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f4==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f5==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f6==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f7==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f8==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f9==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f10==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f11==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f12==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f13==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f14==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f15==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f16==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f17==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f18==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f19==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f20==1 %}Н{% else %}З{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="22">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20 in shift2_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift2_rows|length }}">2</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="furm">{% if f1==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f2==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f3==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f4==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f5==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f6==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f7==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f8==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f9==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f10==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f11==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f12==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f13==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f14==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f15==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f16==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f17==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f18==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f19==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f20==1 %}Н{% else %}З{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="22">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20 in shift2_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 2</td>
+					<td class="furm">{% if f1==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f2==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f3==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f4==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f5==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f6==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f7==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f8==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f9==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f10==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f11==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f12==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f13==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f14==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f15==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f16==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f17==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f18==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f19==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f20==1 %}Н{% else %}З{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="22">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20 in shift3_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift3_rows|length }}">3</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="furm">{% if f1==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f2==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f3==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f4==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f5==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f6==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f7==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f8==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f9==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f10==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f11==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f12==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f13==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f14==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f15==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f16==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f17==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f18==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f19==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f20==1 %}Н{% else %}З{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="22">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20 in shift3_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 3</td>
+					<td class="furm">{% if f1==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f2==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f3==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f4==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f5==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f6==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f7==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f8==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f9==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f10==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f11==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f12==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f13==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f14==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f15==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f16==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f17==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f18==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f19==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f20==1 %}Н{% else %}З{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="22">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f14,f15,f16,f17,f18,f19,f20 in day_row %}
+				<tr>
+					<td class="shift" colspan="2">За сутки</td>
+					<td class="furm">{% if f1==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f2==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f3==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f4==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f5==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f6==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f7==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f8==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f9==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f10==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f11==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f12==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f13==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f14==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f15==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f16==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f17==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f18==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f19==1 %}Н{% else %}З{% endif %}</td>
+					<td class="furm">{% if f20==1 %}Н{% else %}З{% endif %}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="22">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

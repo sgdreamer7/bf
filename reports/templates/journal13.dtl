@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/journal13.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header" rowspan="2">Смена №</th>
+					<th class="hour_header" rowspan="2">Час</th>
+					<th class="p_header" colspan="3">Давление, кгс/см<sup>2</sup></th>
+					<th class="pd_header" colspan="3">Перепад давления, кгс/см<sup>2</sup></th>
+				</tr>
+				<tr>
+					<th class="phd_header">Х.Д.</th>
+					<th class="pgd_header">Г.Д.</th>
+					<th class="pkg_v_header">колош.</th>
+					<th class="pdo_header">общий</th>
+					<th class="pdv_header">верхн.</th>
+					<th class="pdn_header">нижн.</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for hour_value,phd,pgd,pkg_v,pdo,pdv,pdn in shift1_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift1_rows|length }}">1</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="phd">{{ phd|floatformat:2 }}</td>
+					<td class="pgd">{{ pgd|floatformat:2 }}</td>
+					<td class="pkg_v">{{ pkg_v|floatformat:2 }}</td>
+					<td class="pdo">{{ pdo|floatformat:2 }}</td>
+					<td class="pdv">{{ pdv|floatformat:2 }}</td>
+					<td class="pdn">{{ pdn|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for phd,pgd,pkg_v,pdo,pdv,pdn in shift1_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 1</td>
+					<td class="phd">{{ phd|floatformat:2 }}</td>
+					<td class="pgd">{{ pgd|floatformat:2 }}</td>
+					<td class="pkg_v">{{ pkg_v|floatformat:2 }}</td>
+					<td class="pdo">{{ pdo|floatformat:2 }}</td>
+					<td class="pdv">{{ pdv|floatformat:2 }}</td>
+					<td class="pdn">{{ pdn|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,phd,pgd,pkg_v,pdo,pdv,pdn in shift2_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift2_rows|length }}">2</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="phd">{{ phd|floatformat:2 }}</td>
+					<td class="pgd">{{ pgd|floatformat:2 }}</td>
+					<td class="pkg_v">{{ pkg_v|floatformat:2 }}</td>
+					<td class="pdo">{{ pdo|floatformat:2 }}</td>
+					<td class="pdv">{{ pdv|floatformat:2 }}</td>
+					<td class="pdn">{{ pdn|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for phd,pgd,pkg_v,pdo,pdv,pdn in shift2_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 2</td>
+					<td class="phd">{{ phd|floatformat:2 }}</td>
+					<td class="pgd">{{ pgd|floatformat:2 }}</td>
+					<td class="pkg_v">{{ pkg_v|floatformat:2 }}</td>
+					<td class="pdo">{{ pdo|floatformat:2 }}</td>
+					<td class="pdv">{{ pdv|floatformat:2 }}</td>
+					<td class="pdn">{{ pdn|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,phd,pgd,pkg_v,pdo,pdv,pdn in shift3_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift3_rows|length }}">3</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="phd">{{ phd|floatformat:2 }}</td>
+					<td class="pgd">{{ pgd|floatformat:2 }}</td>
+					<td class="pkg_v">{{ pkg_v|floatformat:2 }}</td>
+					<td class="pdo">{{ pdo|floatformat:2 }}</td>
+					<td class="pdv">{{ pdv|floatformat:2 }}</td>
+					<td class="pdn">{{ pdn|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for phd,pgd,pkg_v,pdo,pdv,pdn in shift3_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 3</td>
+					<td class="phd">{{ phd|floatformat:2 }}</td>
+					<td class="pgd">{{ pgd|floatformat:2 }}</td>
+					<td class="pkg_v">{{ pkg_v|floatformat:2 }}</td>
+					<td class="pdo">{{ pdo|floatformat:2 }}</td>
+					<td class="pdv">{{ pdv|floatformat:2 }}</td>
+					<td class="pdn">{{ pdn|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for phd,pgd,pkg_v,pdo,pdv,pdn in day_row %}
+				<tr>
+					<td class="shift" colspan="2">За сутки</td>
+					<td class="phd">{{ phd|floatformat:2 }}</td>
+					<td class="pgd">{{ pgd|floatformat:2 }}</td>
+					<td class="pkg_v">{{ pkg_v|floatformat:2 }}</td>
+					<td class="pdo">{{ pdo|floatformat:2 }}</td>
+					<td class="pdv">{{ pdv|floatformat:2 }}</td>
+					<td class="pdn">{{ pdn|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

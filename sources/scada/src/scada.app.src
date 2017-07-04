@@ -1,0 +1,19 @@
+{application, scada,
+ [
+  {description, "SCADA aplication"},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  erlydtl,
+                  sasl,
+                  os_mon,
+                  crypto,
+                  mimetypes,
+                  ranch,
+                  cowboy
+                 ]},
+  {mod, { scada_app, []}},
+  {env, []}
+ ]}.

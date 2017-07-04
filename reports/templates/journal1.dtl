@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/journal1.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header" rowspan="3">Смена №</th>
+					<th class="hour_header" rowspan="3">Час</th>
+					<th class="charge_header" rowspan="3">№ подачи</th>
+					<th class="charge_level_header" colspan="4">Уровень засыпи</th>
+					<th class="fhd_header" rowspan="3">Расх. хол. дутья, м<sup>3</sup>/мин.</th>
+					<th class="tgd_header" rowspan="3">Темп. горяч. дутья, <sup>o</sup>C</th>
+					<th class="mhd_header" rowspan="3">Влаж. дутья, г/м<sup>3</sup></th>
+					<th class="qo2hd_header" rowspan="3">% O<sub>2</sub> в дутье</th>
+					<th class="fpg_hd_header" rowspan="3">Расх. прир. газа, м<sup>3</sup>/час</th>
+					<th class="ppg_hd_header" rowspan="3">Давл. прир. газа, ксг/см<sup>2</sup></th>
+					<th class="fpg_hd_fhd_header" rowspan="3">% прир. газа к дутью</th>
+				</tr>
+				<tr>
+					<th class="charge_level_l_header" colspan="2">слева</th>
+					<th class="charge_level_r_header" colspan="2">справа</th>					
+				</tr>
+				<tr>
+					<th class="charge_level_l_ref_header">Задан., м</th>
+					<th class="charge_level_l_act_header">Факт., м</th>
+					<th class="charge_level_r_ref_header">Задан., м</th>
+					<th class="charge_level_r_act_header">Факт., м</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for hour_value,charge,charge_level_l_ref,charge_level_l,charge_level_r_ref,charge_level_r,fhd,tgd,mhd,qo2hd,fpg_hd,ppg_hd,fpg_hd_fhd in shift1_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift1_rows|length }}">1</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="charge">{{ charge|floatformat:0 }}</td>
+					<td class="charge_level_l_ref">{{ charge_level_l_ref|floatformat:2 }}</td>
+					<td class="charge_level_l">{{ charge_level_l|floatformat:2 }}</td>
+					<td class="charge_level_r_ref">{{ charge_level_r_ref|floatformat:2 }}</td>
+					<td class="charge_level_r">{{ charge_level_r|floatformat:2 }}</td>
+					<td class="fhd">{{ fhd|floatformat:0 }}</td>
+					<td class="tgd">{{ tgd|floatformat:0 }}</td>
+					<td class="mhd">{{ mhd|floatformat:2 }}</td>
+					<td class="qo2hd">{{ qo2hd|floatformat:2 }}</td>
+					<td class="fpg_hd">{{ fpg_hd|floatformat:0 }}</td>
+					<td class="ppg_hd">{{ ppg_hd|floatformat:2 }}</td>
+					<td class="fpg_hd_fhd">{{ fpg_hd_fhd|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for charge,charge_level_l_ref,charge_level_l,charge_level_r_ref,charge_level_r,fhd,tgd,mhd,qo2hd,fpg_hd,ppg_hd,fpg_hd_fhd in shift1_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 1</td>
+					<td class="charge">{{ charge|floatformat:0 }}</td>
+					<td class="charge_level_l_ref">{{ charge_level_l_ref|floatformat:2 }}</td>
+					<td class="charge_level_l">{{ charge_level_l|floatformat:2 }}</td>
+					<td class="charge_level_r_ref">{{ charge_level_r_ref|floatformat:2 }}</td>
+					<td class="charge_level_r">{{ charge_level_r|floatformat:2 }}</td>
+					<td class="fhd">{{ fhd|floatformat:0 }}</td>
+					<td class="tgd">{{ tgd|floatformat:0 }}</td>
+					<td class="mhd">{{ mhd|floatformat:2 }}</td>
+					<td class="qo2hd">{{ qo2hd|floatformat:2 }}</td>
+					<td class="fpg_hd">{{ fpg_hd|floatformat:0 }}</td>
+					<td class="ppg_hd">{{ ppg_hd|floatformat:2 }}</td>
+					<td class="fpg_hd_fhd">{{ fpg_hd_fhd|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,charge,charge_level_l_ref,charge_level_l,charge_level_r_ref,charge_level_r,fhd,tgd,mhd,qo2hd,fpg_hd,ppg_hd,fpg_hd_fhd in shift2_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift2_rows|length }}">2</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="charge">{{ charge|floatformat:0 }}</td>
+					<td class="charge_level_l_ref">{{ charge_level_l_ref|floatformat:2 }}</td>
+					<td class="charge_level_l">{{ charge_level_l|floatformat:2 }}</td>
+					<td class="charge_level_r_ref">{{ charge_level_r_ref|floatformat:2 }}</td>
+					<td class="charge_level_r">{{ charge_level_r|floatformat:2 }}</td>
+					<td class="fhd">{{ fhd|floatformat:0 }}</td>
+					<td class="tgd">{{ tgd|floatformat:0 }}</td>
+					<td class="mhd">{{ mhd|floatformat:2 }}</td>
+					<td class="qo2hd">{{ qo2hd|floatformat:2 }}</td>
+					<td class="fpg_hd">{{ fpg_hd|floatformat:0 }}</td>
+					<td class="ppg_hd">{{ ppg_hd|floatformat:2 }}</td>
+					<td class="fpg_hd_fhd">{{ fpg_hd_fhd|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for charge,charge_level_l_ref,charge_level_l,charge_level_r_ref,charge_level_r,fhd,tgd,mhd,qo2hd,fpg_hd,ppg_hd,fpg_hd_fhd in shift2_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 2</td>
+					<td class="charge">{{ charge|floatformat:0 }}</td>
+					<td class="charge_level_l_ref">{{ charge_level_l_ref|floatformat:2 }}</td>
+					<td class="charge_level_l">{{ charge_level_l|floatformat:2 }}</td>
+					<td class="charge_level_r_ref">{{ charge_level_r_ref|floatformat:2 }}</td>
+					<td class="charge_level_r">{{ charge_level_r|floatformat:2 }}</td>
+					<td class="fhd">{{ fhd|floatformat:0 }}</td>
+					<td class="tgd">{{ tgd|floatformat:0 }}</td>
+					<td class="mhd">{{ mhd|floatformat:2 }}</td>
+					<td class="qo2hd">{{ qo2hd|floatformat:2 }}</td>
+					<td class="fpg_hd">{{ fpg_hd|floatformat:0 }}</td>
+					<td class="ppg_hd">{{ ppg_hd|floatformat:2 }}</td>
+					<td class="fpg_hd_fhd">{{ fpg_hd_fhd|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for hour_value,charge,charge_level_l_ref,charge_level_l,charge_level_r_ref,charge_level_r,fhd,tgd,mhd,qo2hd,fpg_hd,ppg_hd,fpg_hd_fhd in shift3_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift3_rows|length }}">3</td>
+					{% endif %}
+					<td class="hour">{{ hour_value }}</td>
+					<td class="charge">{{ charge|floatformat:0 }}</td>
+					<td class="charge_level_l_ref">{{ charge_level_l_ref|floatformat:2 }}</td>
+					<td class="charge_level_l">{{ charge_level_l|floatformat:2 }}</td>
+					<td class="charge_level_r_ref">{{ charge_level_r_ref|floatformat:2 }}</td>
+					<td class="charge_level_r">{{ charge_level_r|floatformat:2 }}</td>
+					<td class="fhd">{{ fhd|floatformat:0 }}</td>
+					<td class="tgd">{{ tgd|floatformat:0 }}</td>
+					<td class="mhd">{{ mhd|floatformat:2 }}</td>
+					<td class="qo2hd">{{ qo2hd|floatformat:2 }}</td>
+					<td class="fpg_hd">{{ fpg_hd|floatformat:0 }}</td>
+					<td class="ppg_hd">{{ ppg_hd|floatformat:2 }}</td>
+					<td class="fpg_hd_fhd">{{ fpg_hd_fhd|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for charge,charge_level_l_ref,charge_level_l,charge_level_r_ref,charge_level_r,fhd,tgd,mhd,qo2hd,fpg_hd,ppg_hd,fpg_hd_fhd in shift3_row %}
+				<tr>
+					<td class="shift" colspan="2">За смену 3</td>
+					<td class="charge">{{ charge|floatformat:0 }}</td>
+					<td class="charge_level_l_ref">{{ charge_level_l_ref|floatformat:2 }}</td>
+					<td class="charge_level_l">{{ charge_level_l|floatformat:2 }}</td>
+					<td class="charge_level_r_ref">{{ charge_level_r_ref|floatformat:2 }}</td>
+					<td class="charge_level_r">{{ charge_level_r|floatformat:2 }}</td>
+					<td class="fhd">{{ fhd|floatformat:0 }}</td>
+					<td class="tgd">{{ tgd|floatformat:0 }}</td>
+					<td class="mhd">{{ mhd|floatformat:2 }}</td>
+					<td class="qo2hd">{{ qo2hd|floatformat:2 }}</td>
+					<td class="fpg_hd">{{ fpg_hd|floatformat:0 }}</td>
+					<td class="ppg_hd">{{ ppg_hd|floatformat:2 }}</td>
+					<td class="fpg_hd_fhd">{{ fpg_hd_fhd|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for charge,charge_level_l_ref,charge_level_l,charge_level_r_ref,charge_level_r,fhd,tgd,mhd,qo2hd,fpg_hd,ppg_hd,fpg_hd_fhd in day_row %}
+				<tr>
+					<td class="shift" colspan="2">За сутки</td>
+					<td class="charge">{{ charge|floatformat:0 }}</td>
+					<td class="charge_level_l_ref">{{ charge_level_l_ref|floatformat:2 }}</td>
+					<td class="charge_level_l">{{ charge_level_l|floatformat:2 }}</td>
+					<td class="charge_level_r_ref">{{ charge_level_r_ref|floatformat:2 }}</td>
+					<td class="charge_level_r">{{ charge_level_r|floatformat:2 }}</td>
+					<td class="fhd">{{ fhd|floatformat:0 }}</td>
+					<td class="tgd">{{ tgd|floatformat:0 }}</td>
+					<td class="mhd">{{ mhd|floatformat:2 }}</td>
+					<td class="qo2hd">{{ qo2hd|floatformat:2 }}</td>
+					<td class="fpg_hd">{{ fpg_hd|floatformat:0 }}</td>
+					<td class="ppg_hd">{{ ppg_hd|floatformat:2 }}</td>
+					<td class="fpg_hd_fhd">{{ fpg_hd_fhd|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="14">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

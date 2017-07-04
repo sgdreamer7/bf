@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/report_messages.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}, смена {{ shift }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}. Смена: {{ shift }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td class="header_shift_title">Смена</td>
+				<td class="header_shift_data"><span class="data">{{ shift }}</span></td>
+			</tr>
+			<tr>
+				<td class="header_shift_start_title">Начало смены:</td>
+				<td class="header_shift_start_data"><span class="data">{{ shift_start }}</span></td>
+				<td class="header_shift_finish_title">Окончание смены:</td>
+				<td class="header_shift_finish_data"><span class="data">{{ shift_finish }}</span></td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="datetime_header">Дата и время</th>
+					<th class="message_header">Сообщение</th>
+					<th class="value_header">Значение</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datetime,message,value in messages %}
+				<tr>
+					<td class="datetime">{{ datetime }}</td>
+					<td class="message">{{ message }}</td>
+					<td class="value">{{ value }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="messages_absent" colspan="3">Нет сообщений</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>
+

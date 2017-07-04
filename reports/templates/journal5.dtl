@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/journal5.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="datetime_header" rowspan="2">Дата и время</th>
+					<th class="charge_header" rowspan="2">№ подачи</th>
+					<th class="coke_header" rowspan="2">Кокс, т/под</th>
+					<th class="sinter_header" colspan="2">Агломерат, т/под</th>
+					<th class="pellets_header" colspan="2">Окатыши, т/под</th>
+					<th class="mn_header" rowspan="2">Марганцевая руда, т/под</th>
+					<th class="ca_header" rowspan="2">Известняк, т/под</th>
+					<th class="dolomit_header" rowspan="2">Доломит, т/под</th>
+					<th class="marten_slag_header" rowspan="2">Мартеновский шлак, т/под</th>
+					<th class="simn_slag_header" rowspan="2">Шлак SiMn, т/под</th>
+					<th class="weld_slag_header" rowspan="2">Сварочный шлак, т/под</th>
+					<th class="iron_ore_header" rowspan="2">Железная руда, т/под</th>
+					<th class="fe_total_header" rowspan="2">А+О+Р, т/под</th>
+					<th class="ca_ref_header" rowspan="2">Известняк по расчету, т/под</th>
+				</tr>
+				<tr>
+					<th class="a1_header">А1</th>
+					<th class="a2_header">А2</th>
+					<th class="cgok_header">ЦГОК</th>
+					<th class="pgok_header">ПГОК</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datetime,charge,coke,sinter1,sinter2,pellets1,pellets2,mn,ca,dolomit,marten_slag,simn_slag,weld_slag,iron_ore,fe_total,ca_ref in data_rows %}
+				<tr>
+					<td class="datetime">{{ datetime }}</td>
+					<td class="charge">{{ charge|floatformat:0 }}</td>
+					<td class="coke">{{ coke|floatformat:0 }}</td>
+					<td class="sinter1">{{ sinter1|floatformat:3 }}</td>
+					<td class="sinter2">{{ sinter2|floatformat:3 }}</td>
+					<td class="pellets1">{{ pellets1|floatformat:3 }}</td>
+					<td class="pellets2">{{ pellets2|floatformat:3 }}</td>
+					<td class="mn">{{ mn|floatformat:3 }}</td>
+					<td class="ca">{{ ca|floatformat:3 }}</td>
+					<td class="dolomit">{{ dolomit|floatformat:3 }}</td>
+					<td class="marten_slag">{{ marten_slag|floatformat:3 }}</td>
+					<td class="simn_slag">{{ simn_slag|floatformat:3 }}</td>
+					<td class="weld_slag">{{ weld_slag|floatformat:3 }}</td>
+					<td class="iron_ore">{{ iron_ore|floatformat:3 }}</td>
+					<td class="fe_total">{{ fe_total|floatformat:3 }}</td>
+					<td class="ca_ref">{{ ca_ref|floatformat:3 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="15">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

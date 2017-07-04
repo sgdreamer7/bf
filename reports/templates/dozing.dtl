@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/dozing.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header" rowspan="3">Смена</th>
+					<th class="datetime_header" rowspan="3">Дата и время</th>
+					<th class="doze_header" rowspan="3">Подача</th>
+					<th class="material_header" colspan="26">Материал</th>
+				</tr>
+				<tr>
+					<th class="side_header" colspan="13">Левая сторона</th>
+					<th class="side_header" colspan="13">Правая сторона</th>
+				</tr>
+				<tr>
+					<th class="ingredient_header">О4</th>
+					<th class="ingredient_header">О3</th>
+					<th class="ingredient_header">О2</th>
+					<th class="ingredient_header">О1</th>
+					<th class="ingredient_header">Д4</th>
+					<th class="ingredient_header">Д3</th>
+					<th class="ingredient_header">Д2</th>
+					<th class="ingredient_header">Д1</th>
+					<th class="ingredient_header">Ам</th>
+					<th class="ingredient_header">А</th>
+					<th class="ingredient_header">ЖСМ + добавки</th>
+					<th class="ingredient_header">Км</th>
+					<th class="ingredient_header">К</th>
+					<th class="ingredient_header">К</th>
+					<th class="ingredient_header">Км</th>
+					<th class="ingredient_header">ЖСМ + добавки</th>
+					<th class="ingredient_header">А</th>
+					<th class="ingredient_header">Ам</th>
+					<th class="ingredient_header">Д1</th>
+					<th class="ingredient_header">Д2</th>
+					<th class="ingredient_header">Д3</th>
+					<th class="ingredient_header">Д4</th>
+					<th class="ingredient_header">О1</th>
+					<th class="ingredient_header">О2</th>
+					<th class="ingredient_header">О3</th>
+					<th class="ingredient_header">О4</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Первая смена -->
+				{% for datetime,doze,lo4,lo3,lo2,lo1,ld4,ld3,ld2,ld1,lam,la,lfe,lkm,lk,rk,rkm,rfe,ra,ram,rd1,rd2,rd3,rd4,ro1,ro2,ro3,ro4 in downloads1 %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ downloads1|length }}">1</td>
+					{% endif %}
+					<td class="datetime">{{ datetime }}</td>
+					<td class="doze">{{ doze }}</td>
+					<td class="ingredient">{{ lo4|floatformat:0 }}</td>
+					<td class="ingredient">{{ lo3|floatformat:0 }}</td>
+					<td class="ingredient">{{ lo2|floatformat:0 }}</td>
+					<td class="ingredient">{{ lo1|floatformat:0 }}</td>
+					<td class="ingredient">{{ ld4|floatformat:0 }}</td>
+					<td class="ingredient">{{ ld3|floatformat:0 }}</td>
+					<td class="ingredient">{{ ld2|floatformat:0 }}</td>
+					<td class="ingredient">{{ ld1|floatformat:0 }}</td>
+					<td class="ingredient">{{ lam|floatformat:0 }}</td>
+					<td class="ingredient">{{ la|floatformat:0 }}</td>
+					<td class="ingredient">{{ lfe|floatformat:0 }}</td>
+					<td class="ingredient">{{ lkm|floatformat:0 }}</td>
+					<td class="ingredient">{{ lk|floatformat:0 }}</td>
+					<td class="ingredient">{{ rk|floatformat:0 }}</td>
+					<td class="ingredient">{{ rkm|floatformat:0 }}</td>
+					<td class="ingredient">{{ rfe|floatformat:0 }}</td>
+					<td class="ingredient">{{ ra|floatformat:0 }}</td>
+					<td class="ingredient">{{ ram|floatformat:0 }}</td>
+					<td class="ingredient">{{ rd1|floatformat:0 }}</td>
+					<td class="ingredient">{{ rd2|floatformat:0 }}</td>
+					<td class="ingredient">{{ rd3|floatformat:0 }}</td>
+					<td class="ingredient">{{ rd4|floatformat:0 }}</td>
+					<td class="ingredient">{{ ro1|floatformat:0 }}</td>
+					<td class="ingredient">{{ ro2|floatformat:0 }}</td>
+					<td class="ingredient">{{ ro3|floatformat:0 }}</td>
+					<td class="ingredient">{{ ro4|floatformat:0 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="shift">1</td>
+					<td class="no_data" colspan="28">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for lo4,lo3,lo2,lo1,ld4,ld3,ld2,ld1,lam,la,lfe,lkm,lk,rk,rkm,rfe,ra,ram,rd1,rd2,rd3,rd4,ro1,ro2,ro3,ro4 in totals1 %}
+				<tr>
+					<td class="datetime" colspan="3">Всего за смену</td>
+					<td class="ingredient">{{ lo4|floatformat:0 }}</td>
+					<td class="ingredient">{{ lo3|floatformat:0 }}</td>
+					<td class="ingredient">{{ lo2|floatformat:0 }}</td>
+					<td class="ingredient">{{ lo1|floatformat:0 }}</td>
+					<td class="ingredient">{{ ld4|floatformat:0 }}</td>
+					<td class="ingredient">{{ ld3|floatformat:0 }}</td>
+					<td class="ingredient">{{ ld2|floatformat:0 }}</td>
+					<td class="ingredient">{{ ld1|floatformat:0 }}</td>
+					<td class="ingredient">{{ lam|floatformat:0 }}</td>
+					<td class="ingredient">{{ la|floatformat:0 }}</td>
+					<td class="ingredient">{{ lfe|floatformat:0 }}</td>
+					<td class="ingredient">{{ lkm|floatformat:0 }}</td>
+					<td class="ingredient">{{ lk|floatformat:0 }}</td>
+					<td class="ingredient">{{ rk|floatformat:0 }}</td>
+					<td class="ingredient">{{ rkm|floatformat:0 }}</td>
+					<td class="ingredient">{{ rfe|floatformat:0 }}</td>
+					<td class="ingredient">{{ ra|floatformat:0 }}</td>
+					<td class="ingredient">{{ ram|floatformat:0 }}</td>
+					<td class="ingredient">{{ rd1|floatformat:0 }}</td>
+					<td class="ingredient">{{ rd2|floatformat:0 }}</td>
+					<td class="ingredient">{{ rd3|floatformat:0 }}</td>
+					<td class="ingredient">{{ rd4|floatformat:0 }}</td>
+					<td class="ingredient">{{ ro1|floatformat:0 }}</td>
+					<td class="ingredient">{{ ro1|floatformat:0 }}</td>
+					<td class="ingredient">{{ ro3|floatformat:0 }}</td>
+					<td class="ingredient">{{ ro4|floatformat:0 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="datetime" colspan="3">Всего за смену</td>
+					<td class="no_data" colspan="26">Нет данных</td>
+				</tr>
+				{% endfor %}
+				<tr>
+					<td class="datetime" colspan="3">Итого ЖСМ + добавки</td>
+					<td class="datetime" colspan="26">{{ totals1_fe|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="datetime" colspan="3">Итого кокса за смену</td>
+					<td class="datetime" colspan="26">{{ totals1_coke|floatformat:0}}</td>
+				</tr>
+				<!-- Вторая смена -->
+				{% for datetime,doze,lo4,lo3,lo2,lo1,ld4,ld3,ld2,ld1,lam,la,lfe,lkm,lk,rk,rkm,rfe,ra,ram,rd1,rd2,rd3,rd4,ro1,ro2,ro3,ro4 in downloads2 %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ downloads2|length }}">2</td>
+					{% endif %}
+					<td class="datetime">{{ datetime }}</td>
+					<td class="doze">{{ doze }}</td>
+					<td class="ingredient">{{ lo4|floatformat:0}}</td>
+					<td class="ingredient">{{ lo3|floatformat:0}}</td>
+					<td class="ingredient">{{ lo2|floatformat:0}}</td>
+					<td class="ingredient">{{ lo1|floatformat:0}}</td>
+					<td class="ingredient">{{ ld4|floatformat:0}}</td>
+					<td class="ingredient">{{ ld3|floatformat:0}}</td>
+					<td class="ingredient">{{ ld2|floatformat:0}}</td>
+					<td class="ingredient">{{ ld1|floatformat:0}}</td>
+					<td class="ingredient">{{ lam|floatformat:0}}</td>
+					<td class="ingredient">{{ la|floatformat:0}}</td>
+					<td class="ingredient">{{ lfe|floatformat:0}}</td>
+					<td class="ingredient">{{ lkm|floatformat:0}}</td>
+					<td class="ingredient">{{ lk|floatformat:0}}</td>
+					<td class="ingredient">{{ rk|floatformat:0}}</td>
+					<td class="ingredient">{{ rkm|floatformat:0}}</td>
+					<td class="ingredient">{{ rfe|floatformat:0}}</td>
+					<td class="ingredient">{{ ra|floatformat:0}}</td>
+					<td class="ingredient">{{ ram|floatformat:0}}</td>
+					<td class="ingredient">{{ rd1|floatformat:0}}</td>
+					<td class="ingredient">{{ rd2|floatformat:0}}</td>
+					<td class="ingredient">{{ rd3|floatformat:0}}</td>
+					<td class="ingredient">{{ rd4|floatformat:0}}</td>
+					<td class="ingredient">{{ ro1|floatformat:0}}</td>
+					<td class="ingredient">{{ ro2|floatformat:0}}</td>
+					<td class="ingredient">{{ ro3|floatformat:0}}</td>
+					<td class="ingredient">{{ ro4|floatformat:0}}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="shift">2</td>
+					<td class="no_data" colspan="28">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for lo4,lo3,lo2,lo1,ld4,ld3,ld2,ld1,lam,la,lfe,lkm,lk,rk,rkm,rfe,ra,ram,rd1,rd2,rd3,rd4,ro1,ro2,ro3,ro4 in totals2 %}
+				<tr>
+					<td class="datetime" colspan="3">Всего за смену</td>
+					<td class="ingredient">{{ lo4|floatformat:0}}</td>
+					<td class="ingredient">{{ lo3|floatformat:0}}</td>
+					<td class="ingredient">{{ lo2|floatformat:0}}</td>
+					<td class="ingredient">{{ lo1|floatformat:0}}</td>
+					<td class="ingredient">{{ ld4|floatformat:0}}</td>
+					<td class="ingredient">{{ ld3|floatformat:0}}</td>
+					<td class="ingredient">{{ ld2|floatformat:0}}</td>
+					<td class="ingredient">{{ ld1|floatformat:0}}</td>
+					<td class="ingredient">{{ lam|floatformat:0}}</td>
+					<td class="ingredient">{{ la|floatformat:0}}</td>
+					<td class="ingredient">{{ lfe|floatformat:0}}</td>
+					<td class="ingredient">{{ lkm|floatformat:0}}</td>
+					<td class="ingredient">{{ lk|floatformat:0}}</td>
+					<td class="ingredient">{{ rk|floatformat:0}}</td>
+					<td class="ingredient">{{ rkm|floatformat:0}}</td>
+					<td class="ingredient">{{ rfe|floatformat:0}}</td>
+					<td class="ingredient">{{ ra|floatformat:0}}</td>
+					<td class="ingredient">{{ ram|floatformat:0}}</td>
+					<td class="ingredient">{{ rd1|floatformat:0}}</td>
+					<td class="ingredient">{{ rd2|floatformat:0}}</td>
+					<td class="ingredient">{{ rd3|floatformat:0}}</td>
+					<td class="ingredient">{{ rd4|floatformat:0}}</td>
+					<td class="ingredient">{{ ro1|floatformat:0}}</td>
+					<td class="ingredient">{{ ro2|floatformat:0}}</td>
+					<td class="ingredient">{{ ro3|floatformat:0}}</td>
+					<td class="ingredient">{{ ro4|floatformat:0}}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="datetime" colspan="3">Всего за смену</td>
+					<td class="no_data" colspan="26">Нет данных</td>
+				</tr>
+				{% endfor %}
+				<tr>
+					<td class="datetime" colspan="3">Итого ЖСМ + добавки</td>
+					<td class="datetime" colspan="26">{{ totals2_fe|floatformat:0}}</td>
+				</tr>
+				<tr>
+					<td class="datetime" colspan="3">Итого кокса за смену</td>
+					<td class="datetime" colspan="26">{{ totals2_coke|floatformat:0}}</td>
+				</tr>
+				<!-- Третья смена -->
+				{% for datetime,doze,lo4,lo3,lo2,lo1,ld4,ld3,ld2,ld1,lam,la,lfe,lkm,lk,rk,rkm,rfe,ra,ram,rd1,rd2,rd3,rd4,ro1,ro2,ro3,ro4 in downloads3 %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ downloads3|length }}">3</td>
+					{% endif %}
+					<td class="datetime">{{ datetime }}</td>
+					<td class="doze">{{ doze }}</td>
+					<td class="ingredient">{{ lo4|floatformat:0}}</td>
+					<td class="ingredient">{{ lo3|floatformat:0}}</td>
+					<td class="ingredient">{{ lo2|floatformat:0}}</td>
+					<td class="ingredient">{{ lo1|floatformat:0}}</td>
+					<td class="ingredient">{{ ld4|floatformat:0}}</td>
+					<td class="ingredient">{{ ld3|floatformat:0}}</td>
+					<td class="ingredient">{{ ld2|floatformat:0}}</td>
+					<td class="ingredient">{{ ld1|floatformat:0}}</td>
+					<td class="ingredient">{{ lam|floatformat:0}}</td>
+					<td class="ingredient">{{ la|floatformat:0}}</td>
+					<td class="ingredient">{{ lfe|floatformat:0}}</td>
+					<td class="ingredient">{{ lkm|floatformat:0}}</td>
+					<td class="ingredient">{{ lk|floatformat:0}}</td>
+					<td class="ingredient">{{ rk|floatformat:0}}</td>
+					<td class="ingredient">{{ rkm|floatformat:0}}</td>
+					<td class="ingredient">{{ rfe|floatformat:0}}</td>
+					<td class="ingredient">{{ ra|floatformat:0}}</td>
+					<td class="ingredient">{{ ram|floatformat:0}}</td>
+					<td class="ingredient">{{ rd1|floatformat:0}}</td>
+					<td class="ingredient">{{ rd2|floatformat:0}}</td>
+					<td class="ingredient">{{ rd3|floatformat:0}}</td>
+					<td class="ingredient">{{ rd4|floatformat:0}}</td>
+					<td class="ingredient">{{ ro1|floatformat:0}}</td>
+					<td class="ingredient">{{ ro2|floatformat:0}}</td>
+					<td class="ingredient">{{ ro3|floatformat:0}}</td>
+					<td class="ingredient">{{ ro4|floatformat:0}}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="shift">3</td>
+					<td class="no_data" colspan="28">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for lo4,lo3,lo2,lo1,ld4,ld3,ld2,ld1,lam,la,lfe,lkm,lk,rk,rkm,rfe,ra,ram,rd1,rd2,rd3,rd4,ro1,ro2,ro3,ro4 in totals3 %}
+				<tr>
+					<td class="datetime" colspan="3">Всего за смену</td>
+					<td class="ingredient">{{ lo4|floatformat:0}}</td>
+					<td class="ingredient">{{ lo3|floatformat:0}}</td>
+					<td class="ingredient">{{ lo2|floatformat:0}}</td>
+					<td class="ingredient">{{ lo1|floatformat:0}}</td>
+					<td class="ingredient">{{ ld4|floatformat:0}}</td>
+					<td class="ingredient">{{ ld3|floatformat:0}}</td>
+					<td class="ingredient">{{ ld2|floatformat:0}}</td>
+					<td class="ingredient">{{ ld1|floatformat:0}}</td>
+					<td class="ingredient">{{ lam|floatformat:0}}</td>
+					<td class="ingredient">{{ la|floatformat:0}}</td>
+					<td class="ingredient">{{ lfe|floatformat:0}}</td>
+					<td class="ingredient">{{ lkm|floatformat:0}}</td>
+					<td class="ingredient">{{ lk|floatformat:0}}</td>
+					<td class="ingredient">{{ rk|floatformat:0}}</td>
+					<td class="ingredient">{{ rkm|floatformat:0}}</td>
+					<td class="ingredient">{{ rfe|floatformat:0}}</td>
+					<td class="ingredient">{{ ra|floatformat:0}}</td>
+					<td class="ingredient">{{ ram|floatformat:0}}</td>
+					<td class="ingredient">{{ rd1|floatformat:0}}</td>
+					<td class="ingredient">{{ rd2|floatformat:0}}</td>
+					<td class="ingredient">{{ rd3|floatformat:0}}</td>
+					<td class="ingredient">{{ rd4|floatformat:0}}</td>
+					<td class="ingredient">{{ ro1|floatformat:0}}</td>
+					<td class="ingredient">{{ ro2|floatformat:0}}</td>
+					<td class="ingredient">{{ ro3|floatformat:0}}</td>
+					<td class="ingredient">{{ ro4|floatformat:0}}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="datetime" colspan="3">Всего за смену</td>
+					<td class="no_data" colspan="26">Нет данных</td>
+				</tr>
+				{% endfor %}
+				<tr>
+					<td class="datetime" colspan="3">Итого ЖСМ + добавки</td>
+					<td class="datetime" colspan="26">{{ totals3_fe|floatformat:0}}</td>
+				</tr>
+				<tr>
+					<td class="datetime" colspan="3">Итого кокса за смену</td>
+					<td class="datetime" colspan="26">{{ totals3_coke|floatformat:0}}</td>
+				</tr>
+				<!-- Сутки -->
+				{% for lo4,lo3,lo2,lo1,ld4,ld3,ld2,ld1,lam,la,lfe,lkm,lk,rk,rkm,rfe,ra,ram,rd1,rd2,rd3,rd4,ro1,ro2,ro3,ro4 in totals %}
+				<tr>
+					<td class="datetime" colspan="3">Всего за сутки</td>
+					<td class="ingredient">{{ lo4|floatformat:0}}</td>
+					<td class="ingredient">{{ lo3|floatformat:0}}</td>
+					<td class="ingredient">{{ lo2|floatformat:0}}</td>
+					<td class="ingredient">{{ lo1|floatformat:0}}</td>
+					<td class="ingredient">{{ ld4|floatformat:0}}</td>
+					<td class="ingredient">{{ ld3|floatformat:0}}</td>
+					<td class="ingredient">{{ ld2|floatformat:0}}</td>
+					<td class="ingredient">{{ ld1|floatformat:0}}</td>
+					<td class="ingredient">{{ lam|floatformat:0}}</td>
+					<td class="ingredient">{{ la|floatformat:0}}</td>
+					<td class="ingredient">{{ lfe|floatformat:0}}</td>
+					<td class="ingredient">{{ lkm|floatformat:0}}</td>
+					<td class="ingredient">{{ lk|floatformat:0}}</td>
+					<td class="ingredient">{{ rk|floatformat:0}}</td>
+					<td class="ingredient">{{ rkm|floatformat:0}}</td>
+					<td class="ingredient">{{ rfe|floatformat:0}}</td>
+					<td class="ingredient">{{ ra|floatformat:0}}</td>
+					<td class="ingredient">{{ ram|floatformat:0}}</td>
+					<td class="ingredient">{{ rd1|floatformat:0}}</td>
+					<td class="ingredient">{{ rd2|floatformat:0}}</td>
+					<td class="ingredient">{{ rd3|floatformat:0}}</td>
+					<td class="ingredient">{{ rd4|floatformat:0}}</td>
+					<td class="ingredient">{{ ro1|floatformat:0}}</td>
+					<td class="ingredient">{{ ro2|floatformat:0}}</td>
+					<td class="ingredient">{{ ro3|floatformat:0}}</td>
+					<td class="ingredient">{{ ro4|floatformat:0}}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="datetime" colspan="3">Всего за сутки</td>
+					<td class="no_data" colspan="26">Нет данных</td>
+				</tr>
+				{% endfor %}
+				<tr>
+					<td class="datetime" colspan="3">Итого ЖСМ + добавки</td>
+					<td class="datetime" colspan="26">{{ totals_fe|floatformat:0}}</td>
+				</tr>
+				<tr>
+					<td class="datetime" colspan="3">Итого кокса за сутки</td>
+					<td class="datetime" colspan="26">{{ totals_coke|floatformat:0}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

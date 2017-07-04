@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Модуль edoc_doclet</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Обзор</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Модуль edoc_doclet</h1>
+<ul class="index"><li><a href="#description">Описание</a></li><li><a href="#types">Типы данных</a></li><li><a href="#index">Список функций</a></li><li><a href="#functions">Описание функций</a></li></ul>Standard doclet module for EDoc.
+<p>Все права сохранены (с) 2003-2006 Richard Carlsson</p>
+
+<p><b>Авторы:</b> Richard Carlsson (<a href="mailto:carlsson.richard@gmail.com"><tt>carlsson.richard@gmail.com</tt></a>).</p>
+<p><b>Смотри также:</b> <a href="edoc.html">edoc</a>.</p>
+
+<h2><a name="description">Описание</a></h2>Standard doclet module for EDoc.
+<h2><a name="types">Типы данных</a></h2>
+
+<h3 class="typedecl"><a name="type-doclet_gen">doclet_gen()</a></h3>
+<p><tt>doclet_gen() = #doclet_gen{sources = [string()], app = <a href="#type-no_app">no_app()</a> | atom(), packages = [atom()], modules = [atom()], modules = [atom()], filemap = function()}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-doclet_toc">doclet_toc()</a></h3>
+<p><tt>doclet_toc() = #doclet_gen{paths = [string()], indir = string()}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-edoc_context">edoc_context()</a></h3>
+<p><tt>edoc_context() = #context{dir = string(), env = <a href="edoc_lib.html#type-edoc_env">edoc_lib:edoc_env()</a>, opts = [term()]}</tt></p>
+
+
+<h3 class="typedecl"><a name="type-no_app">no_app()</a></h3>
+<p><b>абстрактный тип данных</b>: <tt>no_app()</tt></p>
+<p>A value used to mark absence of an Erlang application
+     context. Use the macro <code>NO_APP</code> defined in
+     <a href="../include/edoc_doclet.hrl"><code>edoc_doclet.hrl</code></a>
+     to produce this value.</p>
+
+<h2><a name="index">Список функций</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_module_title-1">get_module_title/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#run-2">run/2</a></td><td>Main doclet entry point.</td></tr>
+</table>
+
+<h2><a name="functions">Описание функций</a></h2>
+
+<h3 class="function"><a name="get_module_title-1">get_module_title/1</a></h3>
+<div class="spec">
+<p><tt>get_module_title(M) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="run-2">run/2</a></h3>
+<div class="spec">
+<p><tt>run(Command::<a href="#type-doclet_gen">doclet_gen()</a> | <a href="#type-doclet_toc">doclet_toc()</a>, Ctxt::<a href="#type-edoc_context">edoc_context()</a>) -&gt; ok</tt><br></p>
+</div><p><p>Main doclet entry point. See the file <a href="../include/edoc_doclet.hrl"><code>edoc_doclet.hrl</code></a> for the data  
+structures used for passing parameters.</p>
+ 
+  <p>Also see <a href="edoc.html#layout-2"><code>edoc:layout/2</code></a> for layout-related options, and
+  <a href="edoc.html#get_doc-2"><code>edoc:get_doc/2</code></a> for options related to reading source  
+files.</p>
+ 
+  Options:
+  <dl>
+   <dt><code>{file_suffix, string()}</code>
+   </dt>
+   <dd>Specifies the suffix used for output files. The default value is
+       <code>".html"</code>.
+   </dd>
+   <dt><code>{hidden, boolean()}</code>
+   </dt>
+   <dd>If the value is <code>true</code>, documentation of hidden modules and
+       functions will also be included. The default value is <code>false</code>.
+   </dd>
+   <dt><code>{overview, <a href="edoc.html#type-filename">edoc:filename()</a>}</code>
+   </dt>
+   <dd>Specifies the name of the overview-file. By default, this doclet
+       looks for a file <code>"overview.edoc"</code> in the target directory.
+   </dd>
+   <dt><code>{private, boolean()}</code>
+   </dt>
+   <dd>If the value is <code>true</code>, documentation of private modules and
+       functions will also be included. The default value is <code>false</code>.
+   </dd>
+   <dt><code>{stylesheet, string()}</code>
+   </dt>
+   <dd>Specifies the URI used for referencing the stylesheet. The
+       default value is <code>"stylesheet.css"</code>. If an empty string is
+       specified, no stylesheet reference will be generated.
+   </dd>
+   <dt><code>{stylesheet_file, <a href="edoc.html#type-filename">edoc:filename()</a>}</code>
+   </dt>
+   <dd>Specifies the name of the stylesheet file. By default, this
+       doclet uses the file <code>"stylesheet.css"</code> in the <code>priv</code>
+       subdirectory of the EDoc installation directory. The named file
+       will be copied to the target directory.
+   </dd>
+   <dt><code>{title, string()}</code>
+   </dt>
+   <dd>Specifies the title of the overview-page.
+   </dd>
+  </dl></p>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Обзор</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Сгенерировано EDoc, Nov 1 2012, 22:53:03.</i></p>
+</body>
+</html>

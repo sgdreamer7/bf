@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/journal4.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header" rowspan="2">Смена №</th>
+					<th class="slag_tap_header" rowspan="2">№ вып.</th>
+					<th class="tap_header" rowspan="2">№ л.</th>
+					<th class="bottom_tap_header" colspan="2">Нижний</th>
+					<th class="bottom_tap_ladle_header" rowspan="2">Кол-во ковшей</th>
+					<th class="top_tap_header" colspan="2">Верхний</th>
+					<th class="top_tap_ladle_header" rowspan="2">Кол-во ковшей</th>
+					<th class="slag_furm_state_header" rowspan="2">Состояние шлаковой фурмы</th>
+					<th class="ladle_header" colspan="3">Кол-во ковшей</th>
+					<th class="content_header" colspan="9">Химический состав</th>
+				</tr>
+				<tr>
+					<th class="bottom_tap_start_header">Начало</th>
+					<th class="bottom_tap_finish_header">Конец</th>
+					<th class="top_tap_start_header">Начало</th>
+					<th class="top_tap_finish_header">Конец</th>
+					<th class="ladle_ref_header">расчет</th>
+					<th class="ladle_act_header">факт.</th>
+					<th class="ladle_dif_header">остат.</th>
+					<th class="content_sio2_header">SiO<sub>2</sub></th>
+					<th class="content_al2o3_header">Al<sub>2</sub>O<sub>3</sub></th>
+					<th class="content_cao_header">CaO</th>
+					<th class="content_mgo_header">MrO</th>
+					<th class="content_mno_header">MnO</th>
+					<th class="content_feo_header">FeO</th>
+					<th class="content_osh1_header">ОСШ1</th>
+					<th class="content_osh2_header">ОСШ2</th>
+					<th class="content_cas_header">CaS</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for slag_tap,tap,bottom_tap_start,bottom_tap_finish,bottom_tap_ladle,top_tap_start,top_tap_finish,top_tap_ladle,slag_furm_state,ladle_ref,ladle_act,ladle_dif,content_sio2,content_al2o3,content_cao,content_mgo,content_mno,content_feo,content_osh1,content_osh2,content_cas in shift1_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift1_rows|length }}">1</td>
+					{% endif %}
+					<td class="slag_tap">{{ slag_tap|floatformat:0 }}</td>
+					<td class="tap">{{ tap|floatformat:0 }}</td>
+					<td class="bottom_tap_start">{{ bottom_tap_start }}</td>
+					<td class="bottom_tap_finish">{{ bottom_tap_finish }}</td>
+					<td class="bottom_tap_ladle">{{ bottom_tap_ladle|floatformat:1 }}</td>
+					<td class="top_tap_start">{{ top_tap_start }}</td>
+					<td class="top_tap_finish">{{ top_tap_finish }}</td>
+					<td class="top_tap_ladle">{{ top_tap_ladle|floatformat:1 }}</td>
+					<td class="slag_furm_state">{{ slag_furm_state }}</td>
+					<td class="ladle_ref">{{ ladle_ref|floatformat:1 }}</td>
+					<td class="ladle_act">{{ ladle_act|floatformat:1 }}</td>
+					<td class="ladle_dif">{{ ladle_dif|floatformat:1 }}</td>
+					<td class="content_sio2">{{ content_sio2|floatformat:2 }}</td>
+					<td class="content_al2o3">{{ content_al2o3|floatformat:2 }}</td>
+					<td class="content_cao">{{ content_cao|floatformat:2 }}</td>
+					<td class="content_mgo">{{ content_mgo|floatformat:2 }}</td>
+					<td class="content_mno">{{ content_mno|floatformat:2 }}</td>
+					<td class="content_feo">{{ content_feo|floatformat:2 }}</td>
+					<td class="content_osh1">{{ content_osh1|floatformat:2 }}</td>
+					<td class="content_osh2">{{ content_osh2|floatformat:3 }}</td>
+					<td class="content_cas">{{ content_cas|floatformat:3 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="shift">1</td>
+					<td class="no_data" colspan="21">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for ladle_ref,ladle_act,ladle_dif in shift1_row %}
+				<tr>
+					<td colspan="9"></td>
+					<td class="shift" >За смену 1</td>
+					<td class="ladle_ref">{{ ladle_ref|floatformat:1 }}</td>
+					<td class="ladle_act">{{ ladle_act|floatformat:1 }}</td>
+					<td class="ladle_dif">{{ ladle_dif|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="9"></td>
+					<td class="shift" >За смену 1</td>
+					<td class="no_data" colspan="12">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for slag_tap,tap,bottom_tap_start,bottom_tap_finish,bottom_tap_ladle,top_tap_start,top_tap_finish,top_tap_ladle,slag_furm_state,ladle_ref,ladle_act,ladle_dif,content_sio2,content_al2o3,content_cao,content_mgo,content_mno,content_feo,content_osh1,content_osh2,content_cas in shift2_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift2_rows|length }}">2</td>
+					{% endif %}
+					<td class="slag_tap">{{ slag_tap|floatformat:0 }}</td>
+					<td class="tap">{{ tap|floatformat:0 }}</td>
+					<td class="bottom_tap_start">{{ bottom_tap_start }}</td>
+					<td class="bottom_tap_finish">{{ bottom_tap_finish }}</td>
+					<td class="bottom_tap_ladle">{{ bottom_tap_ladle|floatformat:1 }}</td>
+					<td class="top_tap_start">{{ top_tap_start }}</td>
+					<td class="top_tap_finish">{{ top_tap_finish }}</td>
+					<td class="top_tap_ladle">{{ top_tap_ladle|floatformat:1 }}</td>
+					<td class="slag_furm_state">{{ slag_furm_state }}</td>
+					<td class="ladle_ref">{{ ladle_ref|floatformat:1 }}</td>
+					<td class="ladle_act">{{ ladle_act|floatformat:1 }}</td>
+					<td class="ladle_dif">{{ ladle_dif|floatformat:1 }}</td>
+					<td class="content_sio2">{{ content_sio2|floatformat:2 }}</td>
+					<td class="content_al2o3">{{ content_al2o3|floatformat:2 }}</td>
+					<td class="content_cao">{{ content_cao|floatformat:2 }}</td>
+					<td class="content_mgo">{{ content_mgo|floatformat:2 }}</td>
+					<td class="content_mno">{{ content_mno|floatformat:2 }}</td>
+					<td class="content_feo">{{ content_feo|floatformat:2 }}</td>
+					<td class="content_osh1">{{ content_osh1|floatformat:2 }}</td>
+					<td class="content_osh2">{{ content_osh2|floatformat:3 }}</td>
+					<td class="content_cas">{{ content_cas|floatformat:3 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="shift">2</td>
+					<td class="no_data" colspan="21">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for ladle_ref,ladle_act,ladle_dif in shift2_row %}
+				<tr>
+					<td colspan="9"></td>
+					<td class="shift" >За смену 2</td>
+					<td class="ladle_ref">{{ ladle_ref|floatformat:1 }}</td>
+					<td class="ladle_act">{{ ladle_act|floatformat:1 }}</td>
+					<td class="ladle_dif">{{ ladle_dif|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="9"></td>
+					<td class="shift" >За смену 2</td>
+					<td class="no_data" colspan="12">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for slag_tap,tap,bottom_tap_start,bottom_tap_finish,bottom_tap_ladle,top_tap_start,top_tap_finish,top_tap_ladle,slag_furm_state,ladle_ref,ladle_act,ladle_dif,content_sio2,content_al2o3,content_cao,content_mgo,content_mno,content_feo,content_osh1,content_osh2,content_cas in shift3_rows %}
+				<tr>
+					{% if forloop.counter==1 %}
+					<td class="shift" rowspan="{{ shift3_rows|length }}">3</td>
+					{% endif %}
+					<td class="slag_tap">{{ slag_tap|floatformat:0 }}</td>
+					<td class="tap">{{ tap|floatformat:0 }}</td>
+					<td class="bottom_tap_start">{{ bottom_tap_start }}</td>
+					<td class="bottom_tap_finish">{{ bottom_tap_finish }}</td>
+					<td class="bottom_tap_ladle">{{ bottom_tap_ladle|floatformat:1 }}</td>
+					<td class="top_tap_start">{{ top_tap_start }}</td>
+					<td class="top_tap_finish">{{ top_tap_finish }}</td>
+					<td class="top_tap_ladle">{{ top_tap_ladle|floatformat:1 }}</td>
+					<td class="slag_furm_state">{{ slag_furm_state }}</td>
+					<td class="ladle_ref">{{ ladle_ref|floatformat:1 }}</td>
+					<td class="ladle_act">{{ ladle_act|floatformat:1 }}</td>
+					<td class="ladle_dif">{{ ladle_dif|floatformat:1 }}</td>
+					<td class="content_sio2">{{ content_sio2|floatformat:2 }}</td>
+					<td class="content_al2o3">{{ content_al2o3|floatformat:2 }}</td>
+					<td class="content_cao">{{ content_cao|floatformat:2 }}</td>
+					<td class="content_mgo">{{ content_mgo|floatformat:2 }}</td>
+					<td class="content_mno">{{ content_mno|floatformat:2 }}</td>
+					<td class="content_feo">{{ content_feo|floatformat:2 }}</td>
+					<td class="content_osh1">{{ content_osh1|floatformat:2 }}</td>
+					<td class="content_osh2">{{ content_osh2|floatformat:3 }}</td>
+					<td class="content_cas">{{ content_cas|floatformat:3 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="shift">3</td>
+					<td class="no_data" colspan="21">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for ladle_ref,ladle_act,ladle_dif in shift3_row %}
+				<tr>
+					<td colspan="9"></td>
+					<td class="shift" >За смену 3</td>
+					<td class="ladle_ref">{{ ladle_ref|floatformat:1 }}</td>
+					<td class="ladle_act">{{ ladle_act|floatformat:1 }}</td>
+					<td class="ladle_dif">{{ ladle_dif|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td colspan="9"></td>
+					<td class="shift" >За смену 3</td>
+					<td class="no_data" colspan="12">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

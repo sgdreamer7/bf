@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/average_daily_fuel_energy.css"/>
+		<title>Доменная печь, {{ name }}, {{ title_report_date }}, {{ title_report_date2 }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Начало: {{ report_date }}. Окончание: {{ report_date2 }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Начало:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td class="header_date_title2">Окончание:</td>
+				<td class="header_date_data2"><span class="data">{{ report_date2 }}</span></td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="name_header" rowspan="2">Наименование параметра</th>
+					<th class="days_of_month_header" colspan="11">Числа месяца</th>
+					<th class="week_average_header" rowspan="2">Среднее за неделю</th>
+				</tr>
+				{% for day1,day2,day3,day4,day5,day6,day7,day8,day9,day10,day11 in first_row %}
+				<tr>
+					<th class="day_of_month_header">{{ day1 }}</th>
+					<th class="day_of_month_header">{{ day2 }}</th>
+					<th class="day_of_month_header">{{ day3 }}</th>
+					<th class="day_of_month_header">{{ day4 }}</th>
+					<th class="day_of_month_header">{{ day5 }}</th>
+					<th class="day_of_month_header">{{ day6 }}</th>
+					<th class="day_of_month_header">{{ day7 }}</th>
+					<th class="day_of_month_header">{{ day8 }}</th>
+					<th class="day_of_month_header">{{ day9 }}</th>
+					<th class="day_of_month_header">{{ day10 }}</th>
+					<th class="day_of_month_header">{{ day11 }}</th>
+				</tr>
+				{% empty %}
+				<tr>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+					<th class="day_of_month_header">-</th>
+				</tr>
+				{% endfor %}
+			</thead>
+			<tbody>				
+				{% for parameter_name,day1,day2,day3,day4,day5,day6,day7,day8,day9,day10,day11,week_average in rows %}
+				<tr>
+					<th class="parameter_name">{{ parameter_name }}</th>
+					<td class="day">{{ day1 }}</td>
+					<td class="day">{{ day2 }}</td>
+					<td class="day">{{ day3 }}</td>
+					<td class="day">{{ day4 }}</td>
+					<td class="day">{{ day5 }}</td>
+					<td class="day">{{ day6 }}</td>
+					<td class="day">{{ day7 }}</td>
+					<td class="day">{{ day8 }}</td>
+					<td class="day">{{ day9 }}</td>
+					<td class="day">{{ day10 }}</td>
+					<td class="day">{{ day11 }}</td>
+					<td class="day">{{ week_average }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

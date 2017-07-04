@@ -1,0 +1,3 @@
+-define(log_sys_text(Message),scada:log_system_action(Message)).
+-define(log_sys(Message),scada_alarms:log_system_action(Message)).
+-define(log_user(Message),scada_alarms:log_operator_action(Message)).

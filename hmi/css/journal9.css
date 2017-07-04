@@ -1,0 +1,341 @@
+/* Определения стилей пользовательских элементов */
+
+/* Стили шапки таблицы*/
+.table {
+	width:100%;
+	border:black 3px solid;
+	font-family:Arial;
+	font-size:10px;
+	font-weight:normal;
+	-fs-table-paginate: paginate;
+}
+
+.shift_header {
+	width:7%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.mode_header {
+	width:7%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.start_header {
+	width:13%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.finish_header {
+	width:13%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.tgd_header {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.tpp_header {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.tdym_header {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.tstyk_header {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.tkg_header {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+.fsg_header {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:12px;
+	font-weight:bold;
+}
+
+
+/* Стили полей данных в таблице*/
+.shift {
+	width:7%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.vn_mode {
+	width:7%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.start_timestamp {
+	width:13%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.finish_timestamp {
+	width:13%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.tgd {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.tpp {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.tdym {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.tstyk {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.tkg {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.fsg {
+	width:10%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.no_data {
+	width:100%;
+	border:black 1px solid;
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+}
+
+.nostyle {
+}
+
+.data {
+	border:1px black solid;
+	font-style:italic;
+	padding-left:3px;
+	padding-right:3px;
+	background-color:rgb(250,250,250);
+}
+
+/* Стили шапки документа*/
+.header_table {
+	width:100%;
+	border:none;
+	font-family:Arial;
+	font-size:10px;
+	font-weight:normal;
+}
+
+.header_firm_title {
+	width:20%;
+	border:none;
+	text-align:left;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.header_firm_data {
+	width:30%;
+	border:none;
+	text-align:left;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.header_object_title {
+	width:22%;
+	border:none;
+	text-align:left;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.header_object_data {
+	width:28%;
+	border:none;
+	text-align:left;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.header_name {
+	width:100%;
+	height:50px;
+	border:none;
+	text-align:center;
+	font-size:20px;
+	font-weight:bold;
+}
+
+.header_date_title {
+	width:20%;
+	border:none;
+	text-align:left;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.header_date_data {
+	width:30%;
+	border:none;
+	text-align:left;
+	font-size:14px;
+	font-weight:bold;
+}
+
+/* Обязательные определения параметров страницы и шрифтов
+   для корректного формирования печатной версии документа */
+body {
+	width:267mm;
+	height:180mm;
+	margin:0mm;
+}
+
+	@page {
+		size:297mm 210mm;
+		margin:10mm;
+		border:thin solid black;
+		padding:1em;
+		@top-center {
+			content: element(header) 
+		}
+		@bottom-center {
+			content: element(footer) 
+		}
+	}
+
+	div#header {
+		display: block;
+		position: running(header);
+		text-align:center;
+		font-family:Arial;
+		font-size:10px;
+		font-weight:normal;
+	}
+
+	div#footer {
+		display: block;
+		position: running(footer);
+		text-align:center;
+		font-family:Arial;
+		font-size:10px;
+		font-weight:normal;
+	}
+
+	#pagenumber:before {
+		content: counter(page); 
+	}
+
+	#pagecount:before {
+		content: counter(pages);  
+	}
+
+@font-face {
+	font-family: "Arial";
+	src: url("/fonts/arial.ttf");
+	font-weight:normal;
+	font-style:normal;
+	-fs-pdf-font-embed: embed;
+	-fs-pdf-font-encoding: "Cp1251"; 
+}
+
+@font-face {
+	font-family: "Arial";
+	src: url("/fonts/arialbd.ttf");
+	font-weight:bold;
+	font-style:normal;
+	-fs-pdf-font-embed: embed;
+	-fs-pdf-font-encoding: "Cp1251"; 
+}
+
+@font-face {
+	font-family: "Arial";
+	src: url("/fonts/ariali.ttf");
+	font-weight:normal;
+	font-style:italic;
+	-fs-pdf-font-embed: embed;
+	-fs-pdf-font-encoding: "Cp1251"; 
+}
+
+@font-face {
+	font-family: "Arial";
+	src: url("/fonts/arialbi.ttf");
+	font-weight:bold;
+	font-style:italic;
+	-fs-pdf-font-embed: embed;
+	-fs-pdf-font-encoding: "Cp1251";
+}

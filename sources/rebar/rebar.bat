@@ -1,0 +1,1 @@
+C:/Program Files (x86)/erl5.8.1.1/bin/escript.exe c:/Works/rebar/rebar.txt %1 %2 %3 %4 %5 %6 %7 %8 %9

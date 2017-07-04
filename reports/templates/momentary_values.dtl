@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/momentary_values.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата и время: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title" colspan="2">Дата и время:</td>
+				<td class="header_date_data" colspan="2"><span class="data">{{ report_date }}</span></td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="name_header" colspan="2">Наименование параметра</th>
+					<th class="units_header">Размерность</th>
+					<th class="value_header">Значение</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="title_names" rowspan="5">Дутье</td>
+					<td class="names">Расход</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FHD|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Давление горячего</td>
+					<td class="units">кгс/см<sup>2</sup></td>
+					<td class="values">{{ PGD|floatformat:2 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Температура горячего</td>
+					<td class="units"><sup>o</sup>C</td>
+					<td class="values">{{ TGD|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Влажность</td>
+					<td class="units">г/м<sup>3</sup></td>
+					<td class="values">{{ MHD|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Содержание кислорода</td>
+					<td class="units">%</td>
+					<td class="values">{{ QO2HD|floatformat:2 }}</td>
+				</tr>
+				<tr>
+					<td class="title_names" rowspan="2">Природный газ</td>
+					<td class="names">Расход</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_HD|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Давление</td>
+					<td class="units">кгс/см<sup>2</sup></td>
+					<td class="values">{{ PPG_HD|floatformat:2 }}</td>
+				</tr>
+				<tr>
+					<td class="title_names" rowspan="2">Колошниковый газ</td>
+					<td class="names">Расход (после газоочистки)</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FKG|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Давление</td>
+					<td class="units">кгс/см<sup>2</sup></td>
+					<td class="values">{{ PKG_V|floatformat:2 }}</td>
+				</tr>
+				<tr>
+					<td class="title_names" rowspan="3">Перепад давления в печи</td>
+					<td class="names">Общий</td>
+					<td class="units">кгс/см<sup>2</sup></td>
+					<td class="values">{{ PDO|floatformat:2 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Верхний</td>
+					<td class="units">кгс/см<sup>2</sup></td>
+					<td class="values">{{ PDV|floatformat:2 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Нижний</td>
+					<td class="units">кгс/см<sup>2</sup></td>
+					<td class="values">{{ PDN|floatformat:2 }}</td>
+				</tr>
+				<tr>
+					<td class="title_names" rowspan="20">Расход природного газа</td>
+					<td class="names">Фурма 1</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_1|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 2</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_2|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 3</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_3|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 4</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_4|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 5</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_5|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 6</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_6|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 7</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_7|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 8</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_8|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 9</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_9|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 10</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_10|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 11</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_11|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 12</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_12|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 13</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_13|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 14</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_14|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 15</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_15|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 16</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_16|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 17</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_17|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 18</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_18|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 19</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_19|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="names">Фурма 20</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FPG_20|floatformat:0 }}</td>
+				</tr>
+				<tr>
+					<td class="title_names" colspan="2">Кислород технический</td>
+					<td class="units">м<sup>3</sup>/мин</td>
+					<td class="values">{{ FO2|floatformat:1 }}</td>
+				</tr>
+				<tr>
+					<td class="title_names">Расход пара</td>
+					<td class="names">общий</td>
+					<td class="units">т/ч</td>
+					<td class="values">{{ FPR|floatformat:2 }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

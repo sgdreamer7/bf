@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/coke_by_shift.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}, смена {{ shift }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}. Смена: {{ shift }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td class="header_shift_title">Смена</td>
+				<td class="header_shift_data"><span class="data">{{ shift }}</span></td>
+			</tr>
+			<tr>
+				<td class="header_shift_start_title">Начало смены:</td>
+				<td class="header_shift_start_data"><span class="data">{{ shift_start }}</span></td>
+				<td class="header_shift_finish_title">Окончание смены:</td>
+				<td class="header_shift_finish_data"><span class="data">{{ shift_finish }}</span></td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="datetime_header" rowspan="2">Дата и время выгрузки в скип</th>
+					<th class="cycle_header" rowspan="2">№ подачи</th>
+					<th class="skip_header"  rowspan="2">Коксовый скип</th>
+					<th class="humidity_header" rowspan="2">Влажность кокса</th>
+					<th class="ref_weight_header" colspan="2">Заданная масса, кг</th>
+					<th class="actual_weight_header" colspan="3">Фактическая масса, кг</th>
+					<th class="period_header" colspan="2">Продолжительность, с</th>
+					<th class="dozing_time_header" rowspan="2">Время насева тонны кокса</th>
+					<th class="upload_time_header" rowspan="2">Время выгрузки тонны кокса</th>
+				</tr>
+				<tr>
+					<th class="ref_tech_weight_header">технол.</th>
+					<th class="ref_calc_weight_header">коррек.</th>
+					<th class="actual_download_weight_header">набранная</th>
+					<th class="actual_upload_weight_header">выгруженная</th>
+					<th class="actual_difference_percent_weight_header">%</th>
+					<th class="period_download_header">набора кокса</th>
+					<th class="period_upload_header">выгрузки кокса</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datetime,cycleno,skip,humidity,ref_tech_weight,ref_calc_weight,actual_download_weight,actual_upload_weight,actual_difference_percent_weight,period_download,period_upload,dozing_time,upload_time in downloads %}
+				<tr>
+					<td class="datetime">{{ datetime }}</td>
+					<td class="cycle">{{ cycleno }}</td>
+					<td class="skip">{{ skip }}</td>
+					<td class="humidity">{{ humidity|floatformat:3 }}</td>
+					<td class="ref_tech_weight">{{ ref_tech_weight|floatformat:0 }}</td>
+					<td class="ref_calc_weight">{{ ref_calc_weight|floatformat:0 }}</td>
+					<td class="actual_download_weight">{{ actual_download_weight|floatformat:0 }}</td>
+					<td class="actual_upload_weight">{{ actual_upload_weight|floatformat:0 }}</td>
+					<td class="actual_difference_percent_weight">{{ actual_difference_percent_weight|floatformat:3 }}</td>
+					<td class="period_download">{{ period_download|floatformat:1 }}</td>
+					<td class="period_upload">{{ period_upload|floatformat:1 }}</td>
+					<td class="dozing_time">{{ dozing_time|floatformat:2 }}</td>
+					<td class="upload_time">{{ upload_time|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+				{% for humidity,ref_tech_weight,ref_calc_weight,actual_download_weight,actual_upload_weight,actual_difference_percent_weight,period_download,period_upload,dozing_time,upload_time in totals %}
+				<tr>
+					<td class="datetime" colspan="3">Итого за смену</td>
+					<td class="humidity">{{ humidity|floatformat:3 }}</td>
+					<td class="ref_tech_weight">{{ ref_tech_weight|floatformat:0 }}</td>
+					<td class="ref_calc_weight">{{ ref_calc_weight|floatformat:0 }}</td>
+					<td class="actual_download_weight">{{ actual_download_weight|floatformat:0 }}</td>
+					<td class="actual_upload_weight">{{ actual_upload_weight|floatformat:0 }}</td>
+					<td class="actual_difference_percent_weight">{{ actual_difference_percent_weight|floatformat:3 }}</td>
+					<td class="period_download">{{ period_download|floatformat:1 }}</td>
+					<td class="period_upload">{{ period_upload|floatformat:1 }}</td>
+					<td class="dozing_time">{{ dozing_time|floatformat:2 }}</td>
+					<td class="upload_time">{{ upload_time|floatformat:2 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="13">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

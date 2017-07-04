@@ -1,0 +1,4 @@
+{application,erlydtl}.
+{packages,[filter_lib,i18n]}.
+{modules,[erlydtl,erlydtl_compiler,erlydtl_deps,erlydtl_filters,erlydtl_i18n,
+          erlydtl_parser,erlydtl_runtime,erlydtl_scanner,erlydtl_unparser]}.

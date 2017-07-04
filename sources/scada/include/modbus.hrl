@@ -1,0 +1,12 @@
+-define(OPCODE_READ_COILS,    16#01).
+-define(OPCODE_READ_INPUTS,   16#02).
+-define(OPCODE_READ_HREGS,    16#03).
+-define(OPCODE_READ_IREGS,    16#04).
+-define(OPCODE_WRITE_COIL,    16#05).
+-define(OPCODE_WRITE_HREG,    16#06).
+-define(OPCODE_WRITE_COILS,   16#0f).
+-define(OPCODE_WRITE_HREGS,   16#10).
+
+-record(rtu_req, { address, function_code, start, data, timeout }).
+-record(tcp_req, { tid, rtu_req }).
+-record(modbus_state, { type, host, port, sock, tid }).

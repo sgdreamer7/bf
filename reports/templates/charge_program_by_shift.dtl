@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/charge_program_by_shift.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}, смена {{ shift }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}. Смена: {{ shift }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td class="header_shift_title">Смена</td>
+				<td class="header_shift_data"><span class="data">{{ shift }}</span></td>
+			</tr>
+			<tr>
+				<td class="header_shift_start_title">Начало смены:</td>
+				<td class="header_shift_start_data"><span class="data">{{ shift_start }}</span></td>
+				<td class="header_shift_finish_title">Окончание смены:</td>
+				<td class="header_shift_finish_data"><span class="data">{{ shift_finish }}</span></td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="charge_header" rowspan="2">Номер подачи</th>
+					<th class="datetime_header" rowspan="2">Дата и время</th>
+					<th class="cycle_header" rowspan="2">Номер цикла</th>
+					<th class="program_header" rowspan="2">Тип программы</th>
+					<th class="skips_header" colspan="6">Состав программы по скипам</th>
+					<th class="materials_header" colspan="2">Количество скипов в подаче</th>
+				</tr>
+				<tr>
+					<th class="skip_header">1</th>
+					<th class="skip_header">2</th>
+					<th class="skip_header">3</th>
+					<th class="skip_header">4</th>
+					<th class="skip_header">5</th>
+					<th class="skip_header">6</th>
+					<th class="coke_skips_header">коксовых</th>
+					<th class="sinter_skips_header">рудных</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for datetime,charge,cycle_number,program,skip1,skip2,skip3,skip4,skip5,skip6,coke_skips,sinter_skips in rows %}
+				<tr>
+					<td class="charge">{{ charge }}</td>
+					<td class="datetime">{{ datetime }}</td>
+					<td class="cycle">{{ cycle_number }}</td>
+					<td class="program">{{ program }}</td>
+					<td class="skip">{{ skip1 }}</td>
+					<td class="skip">{{ skip2 }}</td>
+					<td class="skip">{{ skip3 }}</td>
+					<td class="skip">{{ skip4 }}</td>
+					<td class="skip">{{ skip5 }}</td>
+					<td class="skip">{{ skip6 }}</td>
+					<td class="coke_skips">{{ coke_skips }}</td>
+					<td class="sinter_skips">{{ sinter_skips }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="12">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

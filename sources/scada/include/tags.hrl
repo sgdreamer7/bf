@@ -1,0 +1,29 @@
+-record(
+	tag,
+	{
+		name,
+		type,
+		description,
+		driver,
+		address,
+		alarming,
+		alarm_priority,
+		props,
+		shared,
+		timestamp
+	}
+).
+
+-record(
+	alarm,
+	{
+		id,
+		state,
+		priority,
+		timestamp,
+		description,
+		value,
+		units,
+		acknowledged=false
+	}
+).

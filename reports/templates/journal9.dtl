@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/journal9.css"/>
+		<title>Доменная печь, {{ name }}, {{ report_date }}</title>
+	</head>
+	<body>
+		<div id="header" style="">АСУТП ДП. Рапорт: {{ name }}. Дата: {{ report_date }}</div>
+        <div id="footer" style="">  Страница <span id="pagenumber"/> из <span id="pagecount"/> </div>
+		<table class="header_table">
+			<tr>
+				<td class="header_firm_title">Предприятие:</td>
+				<td class="header_firm_data"><span class="data">МК "Завод"</span></td>
+				<td class="header_object_title">Объект:</td>
+				<td class="header_object_data"><span class="data">Доменная печь</span></td>
+			</tr>
+			<tr>
+				<td class="header_name" colspan="4">{{ name }}</td>
+			</tr>
+			<tr>
+				<td class="header_date_title">Дата:</td>
+				<td class="header_date_data"><span class="data">{{ report_date }}</span></td>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+		</table>
+		<p/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="shift_header">Номер смены</th>
+					<th class="mode_header">Режим</th>
+					<th class="start_header">Начало</th>
+					<th class="finish_header">Окончание</th>
+					<th class="tgd_header">Температура горячего дутья, <sup>o</sup>C</th>
+					<th class="tpp_header">Температура купола, <sup>o</sup>C</th>
+					<th class="tdym_header">Температура отходящих газов (дыма), <sup>o</sup>C</th>
+					<th class="tstyk_header">Температура стыка "динас-шамот", <sup>o</sup>C</th>
+					<th class="tkg_header">Температура в камере горения, <sup>o</sup>C</th>
+					<th class="fsg_header">Расход смешанного газа, м<sup>3</sup>/период</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for shift,vn_mode,start_timestamp,finish_timestamp,tgd,tpp,tdym,tstyk,tkg,fsg in rows %}
+				<tr>
+					<td class="shift">{{ shift|floatformat:0 }}</td>
+					<td class="vn_mode">{{ vn_mode }}</td>
+					<td class="start_timestamp">{{ start_timestamp }}</td>
+					<td class="finish_timestamp">{{ finish_timestamp }}</td>
+					<td class="tgd">{{ tgd|floatformat:0 }}</td>
+					<td class="tpp">{{ tpp|floatformat:0 }}</td>
+					<td class="tdym">{{ tdym|floatformat:0 }}</td>
+					<td class="tstyk">{{ tstyk|floatformat:0 }}</td>
+					<td class="tkg">{{ tkg|floatformat:0 }}</td>
+					<td class="fsg">{{ fsg|floatformat:1 }}</td>
+				</tr>
+				{% empty %}
+				<tr>
+					<td class="no_data" colspan="10">Нет данных</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Модуль erlydtl_filters</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Обзор</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Модуль erlydtl_filters</h1>
+<ul class="index"><li><a href="#description">Описание</a></li><li><a href="#index">Список функций</a></li><li><a href="#functions">Описание функций</a></li></ul>
+   Template filters.
+<p>Все права сохранены (с) 2008 Roberto Saccon, Evan Miller</p>
+
+<p><b>Представлено с:</b> 2007-11-11 by Roberto Saccon, Evan Miller
+  -------------------------------------------------------------------</p>
+<p><b>Авторы:</b> Roberto Saccon (<a href="mailto:rsaccon@gmail.com"><tt>rsaccon@gmail.com</tt></a>) [<em>web site:</em> <tt><a href="http://rsaccon.com" target="_top">http://rsaccon.com</a></tt>], Evan Miller (<a href="mailto:emmiller@gmail.com"><tt>emmiller@gmail.com</tt></a>).</p>
+
+<h2><a name="description">Описание</a></h2>
+   Template filters
+<h2><a name="index">Список функций</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#add-2">add/2</a></td><td>Adds a number to the value.</td></tr>
+<tr><td valign="top"><a href="#addDefaultURI-1">addDefaultURI/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#addslashes-1">addslashes/1</a></td><td>Adds slashes before quotes.</td></tr>
+<tr><td valign="top"><a href="#capfirst-1">capfirst/1</a></td><td>Capitalizes the first character of the value.</td></tr>
+<tr><td valign="top"><a href="#cast_to_float-1">cast_to_float/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#cast_to_integer-1">cast_to_integer/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#center-2">center/2</a></td><td>Centers the value in a field of a given width.</td></tr>
+<tr><td valign="top"><a href="#cut-2">cut/2</a></td><td>Removes all values of arg from the given string.</td></tr>
+<tr><td valign="top"><a href="#date-1">date/1</a></td><td>Formats a date according to the default format.</td></tr>
+<tr><td valign="top"><a href="#date-2">date/2</a></td><td>Formats a date according to the given format.</td></tr>
+<tr><td valign="top"><a href="#default-2">default/2</a></td><td>If value evaluates to <code>false</code>, use given default.</td></tr>
+<tr><td valign="top"><a href="#default_if_none-2">default_if_none/2</a></td><td>If (and only if) value is <code>undefined</code>, use given default.</td></tr>
+<tr><td valign="top"><a href="#dictsort-2">dictsort/2</a></td><td>Takes a list of dictionaries and returns that list sorted by the key given in the argument.</td></tr>
+<tr><td valign="top"><a href="#dictsortreversed-2">dictsortreversed/2</a></td><td>Same as dictsort, but the list is reversed.</td></tr>
+<tr><td valign="top"><a href="#divisibleby-2">divisibleby/2</a></td><td>Returns <code>true</code> if the value is divisible by the argument.</td></tr>
+<tr><td valign="top"><a href="#escapejs-1">escapejs/1</a></td><td>Escapes characters for use in JavaScript strings.</td></tr>
+<tr><td valign="top"><a href="#filesizeformat-1">filesizeformat/1</a></td><td>Format the value like a human-readable file size.</td></tr>
+<tr><td valign="top"><a href="#first-1">first/1</a></td><td>Returns the first item in a list.</td></tr>
+<tr><td valign="top"><a href="#fix_ampersands-1">fix_ampersands/1</a></td><td>Replaces ampersands with &amp; entities.</td></tr>
+<tr><td valign="top"><a href="#floatformat-2">floatformat/2</a></td><td>When used without an argument, rounds a floating-point number to one decimal place
+  -- but only if there's a decimal part to be displayed.</td></tr>
+<tr><td valign="top"><a href="#force_escape-1">force_escape/1</a></td><td>Applies HTML escaping to a string.</td></tr>
+<tr><td valign="top"><a href="#format_integer-1">format_integer/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#format_number-1">format_number/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#get_digit-2">get_digit/2</a></td><td>Given a whole number, returns the requested digit, where 1 is the right-most digit.</td></tr>
+<tr><td valign="top"><a href="#iriencode-1">iriencode/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#join-2">join/2</a></td><td>Joins a list with a given separator.</td></tr>
+<tr><td valign="top"><a href="#last-1">last/1</a></td><td>Returns the last item in a list.</td></tr>
+<tr><td valign="top"><a href="#length-1">length/1</a></td><td>Returns the length of the value.</td></tr>
+<tr><td valign="top"><a href="#length_is-2">length_is/2</a></td><td>Returns True iff the value's length is the argument.</td></tr>
+<tr><td valign="top"><a href="#linebreaks-1">linebreaks/1</a></td><td>Replaces line breaks in plain text with appropriate HTML.</td></tr>
+<tr><td valign="top"><a href="#linebreaksbr-1">linebreaksbr/1</a></td><td>Converts all newlines to HTML line breaks.</td></tr>
+<tr><td valign="top"><a href="#linenumbers-1">linenumbers/1</a></td><td>Displays text with line numbers.</td></tr>
+<tr><td valign="top"><a href="#ljust-2">ljust/2</a></td><td>Left-aligns the value in a field of a given width.</td></tr>
+<tr><td valign="top"><a href="#lower-1">lower/1</a></td><td>Converts a string into all lowercase.</td></tr>
+<tr><td valign="top"><a href="#make_list-1">make_list/1</a></td><td>Returns the value turned into a list.</td></tr>
+<tr><td valign="top"><a href="#phone2numeric-1">phone2numeric/1</a></td><td>Converts a phone number (possibly containing letters) to its numerical equivalent.</td></tr>
+<tr><td valign="top"><a href="#pluralize-1">pluralize/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#pluralize-2">pluralize/2</a></td><td>Returns a plural suffix if the value is not 1.</td></tr>
+<tr><td valign="top"><a href="#pprint-1">pprint/1</a></td><td>"pretty print" arbitrary data structures.</td></tr>
+<tr><td valign="top"><a href="#random-1">random/1</a></td><td>Returns a random item from the given list.</td></tr>
+<tr><td valign="top"><a href="#random_num-1">random_num/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#random_range-1">random_range/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#removetags-2">removetags/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#rjust-2">rjust/2</a></td><td>Right-aligns the value in a field of a given width.</td></tr>
+<tr><td valign="top"><a href="#round-2">round/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#slice-2">slice/2</a></td><td>Returns a slice of the list.</td></tr>
+<tr><td valign="top"><a href="#slugify-1">slugify/1</a></td><td>Converts to lowercase, removes non-word characters (alphanumerics and underscores) and converts spaces to hyphens.</td></tr>
+<tr><td valign="top"><a href="#stringformat-2">stringformat/2</a></td><td>Returns a formatted string.</td></tr>
+<tr><td valign="top"><a href="#stringformat_io-7">stringformat_io/7</a></td><td>  
+A conversion specifier contains two or more characters and has the following components, which must occur in this order:.</td></tr>
+<tr><td valign="top"><a href="#striptags-1">striptags/1</a></td><td>Strips all [X]HTML tags.</td></tr>
+<tr><td valign="top"><a href="#time-1">time/1</a></td><td>Formats a time according to the given format.</td></tr>
+<tr><td valign="top"><a href="#time-2">time/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#timesince-1">timesince/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#timesince-2">timesince/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#timeuntil-1">timeuntil/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#timeuntil-2">timeuntil/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#title-1">title/1</a></td><td>Converts a string into titlecase.</td></tr>
+<tr><td valign="top"><a href="#truncatechars-2">truncatechars/2</a></td><td>Truncates a string after a certain number of characters.</td></tr>
+<tr><td valign="top"><a href="#truncatewords-2">truncatewords/2</a></td><td>Truncates a string after a certain number of words.</td></tr>
+<tr><td valign="top"><a href="#truncatewords_html-2">truncatewords_html/2</a></td><td>Similar to truncatewords, except that it is aware of HTML tags.</td></tr>
+<tr><td valign="top"><a href="#unjoin-2">unjoin/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#unordered_list-1">unordered_list/1</a></td><td>Recursively takes a self-nested list and returns an HTML unordered list -- WITHOUT opening and closing <code>&lt;ul&gt;</code> tags.</td></tr>
+<tr><td valign="top"><a href="#upper-1">upper/1</a></td><td>Converts a string into all uppercase.</td></tr>
+<tr><td valign="top"><a href="#urlencode-1">urlencode/1</a></td><td>Escapes a value for use in a URL.</td></tr>
+<tr><td valign="top"><a href="#urlize-1">urlize/1</a></td><td>Converts URLs in text into clickable links.</td></tr>
+<tr><td valign="top"><a href="#urlize-2">urlize/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#urlizetrunc-2">urlizetrunc/2</a></td><td>Converts URLs into clickable links just like urlize, but truncates URLs longer than the given character limit.</td></tr>
+<tr><td valign="top"><a href="#wordcount-1">wordcount/1</a></td><td>Returns the number of words.</td></tr>
+<tr><td valign="top"><a href="#wordwrap-2">wordwrap/2</a></td><td>Wraps words at specified line length, uses <code>&lt;BR/&gt;</code> html tag to delimit lines.</td></tr>
+<tr><td valign="top"><a href="#yesno-2">yesno/2</a></td><td>Given a string mapping values for true, false and (optionally) undefined, returns one of those strings according to the value.</td></tr>
+</table>
+
+<h2><a name="functions">Описание функций</a></h2>
+
+<h3 class="function"><a name="add-2">add/2</a></h3>
+<div class="spec">
+<p><tt>add(Input, Number) -&gt; any()</tt></p>
+</div><p>Adds a number to the value.</p>
+
+<h3 class="function"><a name="addDefaultURI-1">addDefaultURI/1</a></h3>
+<div class="spec">
+<p><tt>addDefaultURI(Domain) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="addslashes-1">addslashes/1</a></h3>
+<div class="spec">
+<p><tt>addslashes(Input) -&gt; any()</tt></p>
+</div><p>Adds slashes before quotes.</p>
+
+<h3 class="function"><a name="capfirst-1">capfirst/1</a></h3>
+<div class="spec">
+<p><tt>capfirst(T) -&gt; any()</tt></p>
+</div><p>Capitalizes the first character of the value.</p>
+
+<h3 class="function"><a name="cast_to_float-1">cast_to_float/1</a></h3>
+<div class="spec">
+<p><tt>cast_to_float(Input) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="cast_to_integer-1">cast_to_integer/1</a></h3>
+<div class="spec">
+<p><tt>cast_to_integer(Input) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="center-2">center/2</a></h3>
+<div class="spec">
+<p><tt>center(Input, Number) -&gt; any()</tt></p>
+</div><p>Centers the value in a field of a given width.</p>
+
+<h3 class="function"><a name="cut-2">cut/2</a></h3>
+<div class="spec">
+<p><tt>cut(Input, Arg) -&gt; any()</tt></p>
+</div><p>Removes all values of arg from the given string.</p>
+
+<h3 class="function"><a name="date-1">date/1</a></h3>
+<div class="spec">
+<p><tt>date(Input) -&gt; any()</tt></p>
+</div><p>Formats a date according to the default format.</p>
+
+<h3 class="function"><a name="date-2">date/2</a></h3>
+<div class="spec">
+<p><tt>date(Input, FormatStr) -&gt; any()</tt></p>
+</div><p>Formats a date according to the given format.</p>
+
+<h3 class="function"><a name="default-2">default/2</a></h3>
+<div class="spec">
+<p><tt>default(Input, Default) -&gt; any()</tt></p>
+</div><p>If value evaluates to <code>false</code>, use given default. Otherwise, use the value.</p>
+
+<h3 class="function"><a name="default_if_none-2">default_if_none/2</a></h3>
+<div class="spec">
+<p><tt>default_if_none(Input, Default) -&gt; any()</tt></p>
+</div><p>If (and only if) value is <code>undefined</code>, use given default. Otherwise, use the value.</p>
+
+<h3 class="function"><a name="dictsort-2">dictsort/2</a></h3>
+<div class="spec">
+<p><tt>dictsort(DictList, Key) -&gt; any()</tt></p>
+</div><p>Takes a list of dictionaries and returns that list sorted by the key given in the argument.</p>
+
+<h3 class="function"><a name="dictsortreversed-2">dictsortreversed/2</a></h3>
+<div class="spec">
+<p><tt>dictsortreversed(DictList, Key) -&gt; any()</tt></p>
+</div><p>Same as dictsort, but the list is reversed.</p>
+
+<h3 class="function"><a name="divisibleby-2">divisibleby/2</a></h3>
+<div class="spec">
+<p><tt>divisibleby(Input, Divisor) -&gt; any()</tt></p>
+</div><p>Returns <code>true</code> if the value is divisible by the argument.</p>
+
+<h3 class="function"><a name="escapejs-1">escapejs/1</a></h3>
+<div class="spec">
+<p><tt>escapejs(Input) -&gt; any()</tt></p>
+</div><p>Escapes characters for use in JavaScript strings.</p>
+
+<h3 class="function"><a name="filesizeformat-1">filesizeformat/1</a></h3>
+<div class="spec">
+<p><tt>filesizeformat(Input) -&gt; any()</tt></p>
+</div><p>Format the value like a human-readable file size.</p>
+
+<h3 class="function"><a name="first-1">first/1</a></h3>
+<div class="spec">
+<p><tt>first(Rest) -&gt; any()</tt></p>
+</div><p>Returns the first item in a list.</p>
+
+<h3 class="function"><a name="fix_ampersands-1">fix_ampersands/1</a></h3>
+<div class="spec">
+<p><tt>fix_ampersands(Input) -&gt; any()</tt></p>
+</div><p>Replaces ampersands with &amp; entities.</p>
+
+<h3 class="function"><a name="floatformat-2">floatformat/2</a></h3>
+<div class="spec">
+<p><tt>floatformat(Number, Place) -&gt; any()</tt></p>
+</div><p>When used without an argument, rounds a floating-point number to one decimal place
+  -- but only if there's a decimal part to be displayed</p>
+
+<h3 class="function"><a name="force_escape-1">force_escape/1</a></h3>
+<div class="spec">
+<p><tt>force_escape(Input) -&gt; any()</tt></p>
+</div><p>Applies HTML escaping to a string.</p>
+
+<h3 class="function"><a name="format_integer-1">format_integer/1</a></h3>
+<div class="spec">
+<p><tt>format_integer(Input) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="format_number-1">format_number/1</a></h3>
+<div class="spec">
+<p><tt>format_number(Input) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="get_digit-2">get_digit/2</a></h3>
+<div class="spec">
+<p><tt>get_digit(Input, Digit) -&gt; any()</tt></p>
+</div><p>Given a whole number, returns the requested digit, where 1 is the right-most digit.</p>
+
+<h3 class="function"><a name="iriencode-1">iriencode/1</a></h3>
+<div class="spec">
+<p><tt>iriencode(Input) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="join-2">join/2</a></h3>
+<div class="spec">
+<p><tt>join(Input, Separator) -&gt; any()</tt></p>
+</div><p>Joins a list with a given separator.</p>
+
+<h3 class="function"><a name="last-1">last/1</a></h3>
+<div class="spec">
+<p><tt>last(Input) -&gt; any()</tt></p>
+</div><p>Returns the last item in a list.</p>
+
+<h3 class="function"><a name="length-1">length/1</a></h3>
+<div class="spec">
+<p><tt>length(Input) -&gt; any()</tt></p>
+</div><p>Returns the length of the value.</p>
+
+<h3 class="function"><a name="length_is-2">length_is/2</a></h3>
+<div class="spec">
+<p><tt>length_is(Input, Number) -&gt; any()</tt></p>
+</div><p>Returns True iff the value's length is the argument.</p>
+
+<h3 class="function"><a name="linebreaks-1">linebreaks/1</a></h3>
+<div class="spec">
+<p><tt>linebreaks(Input) -&gt; any()</tt></p>
+</div><p>Replaces line breaks in plain text with appropriate HTML</p>
+
+<h3 class="function"><a name="linebreaksbr-1">linebreaksbr/1</a></h3>
+<div class="spec">
+<p><tt>linebreaksbr(Input) -&gt; any()</tt></p>
+</div><p>Converts all newlines to HTML line breaks.</p>
+
+<h3 class="function"><a name="linenumbers-1">linenumbers/1</a></h3>
+<div class="spec">
+<p><tt>linenumbers(Input) -&gt; any()</tt></p>
+</div><p>Displays text with line numbers.</p>
+
+<h3 class="function"><a name="ljust-2">ljust/2</a></h3>
+<div class="spec">
+<p><tt>ljust(Input, Number) -&gt; any()</tt></p>
+</div><p>Left-aligns the value in a field of a given width.</p>
+
+<h3 class="function"><a name="lower-1">lower/1</a></h3>
+<div class="spec">
+<p><tt>lower(Input) -&gt; any()</tt></p>
+</div><p>Converts a string into all lowercase.</p>
+
+<h3 class="function"><a name="make_list-1">make_list/1</a></h3>
+<div class="spec">
+<p><tt>make_list(Input) -&gt; any()</tt></p>
+</div><p>Returns the value turned into a list. For an integer, it's a list of digits.
+  For a string, it's a list of characters.
+  Added this for DTL compatibility, but since strings are lists in Erlang, no need for this.</p>
+
+<h3 class="function"><a name="phone2numeric-1">phone2numeric/1</a></h3>
+<div class="spec">
+<p><tt>phone2numeric(Input) -&gt; any()</tt></p>
+</div><p>Converts a phone number (possibly containing letters) to its numerical equivalent.</p>
+
+<h3 class="function"><a name="pluralize-1">pluralize/1</a></h3>
+<div class="spec">
+<p><tt>pluralize(Number) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="pluralize-2">pluralize/2</a></h3>
+<div class="spec">
+<p><tt>pluralize(Number, Suffix) -&gt; any()</tt></p>
+</div><p>Returns a plural suffix if the value is not 1. By default, this suffix is 's'.</p>
+
+<h3 class="function"><a name="pprint-1">pprint/1</a></h3>
+<div class="spec">
+<p><tt>pprint(Input) -&gt; any()</tt></p>
+</div><p>"pretty print" arbitrary data structures.  Used for debugging.</p>
+
+<h3 class="function"><a name="random-1">random/1</a></h3>
+<div class="spec">
+<p><tt>random(Input) -&gt; any()</tt></p>
+</div><p>Returns a random item from the given list.</p>
+
+<h3 class="function"><a name="random_num-1">random_num/1</a></h3>
+<div class="spec">
+<p><tt>random_num(Value) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="random_range-1">random_range/1</a></h3>
+<div class="spec">
+<p><tt>random_range(Range) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="removetags-2">removetags/2</a></h3>
+<div class="spec">
+<p><tt>removetags(Input, Tags) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="rjust-2">rjust/2</a></h3>
+<div class="spec">
+<p><tt>rjust(Input, Number) -&gt; any()</tt></p>
+</div><p>Right-aligns the value in a field of a given width.</p>
+
+<h3 class="function"><a name="round-2">round/2</a></h3>
+<div class="spec">
+<p><tt>round(Number, Precision) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="slice-2">slice/2</a></h3>
+<div class="spec">
+<p><tt>slice(Input, Index) -&gt; any()</tt></p>
+</div><p>Returns a slice of the list.</p>
+
+<h3 class="function"><a name="slugify-1">slugify/1</a></h3>
+<div class="spec">
+<p><tt>slugify(Input) -&gt; any()</tt></p>
+</div><p>Converts to lowercase, removes non-word characters (alphanumerics and underscores) and converts spaces to hyphens.</p>
+
+<h3 class="function"><a name="stringformat-2">stringformat/2</a></h3>
+<div class="spec">
+<p><tt>stringformat(Input, Conversion) -&gt; any()</tt></p>
+</div><p>Returns a formatted string</p>
+
+<h3 class="function"><a name="stringformat_io-7">stringformat_io/7</a></h3>
+<div class="spec">
+<p><tt>stringformat_io(Input, Conversion, ConversionFlag, MinFieldWidth, Precision, PrecisionLength, X7) -&gt; any()</tt></p>
+</div><p><p>  
+A conversion specifier contains two or more characters and has the following components, which must occur in this order:</p>
+ 
+     1. The "%" character, which marks the start of the specifier.
+     2. Mapping key (optional), consisting of a parenthesised sequence of characters (for example, (somename)).
+     3. Conversion flags (optional), which affect the result of some conversion types.
+     4. Minimum field width (optional). If specified as an "*" (asterisk), the actual width is read from the next element of the tuple in values, and the object to convert comes after the minimum field width and optional precision.
+     5. Precision (optional), given as a "." (dot) followed by the precision. If specified as "*" (an asterisk), the actual width is read from the next element of the tuple in values, and the value to convert comes after the precision.
+     6. Length modifier (optional).
+     7. Conversion type.</p>
+
+<h3 class="function"><a name="striptags-1">striptags/1</a></h3>
+<div class="spec">
+<p><tt>striptags(Input) -&gt; any()</tt></p>
+</div><p>Strips all [X]HTML tags.</p>
+
+<h3 class="function"><a name="time-1">time/1</a></h3>
+<div class="spec">
+<p><tt>time(Input) -&gt; any()</tt></p>
+</div><p>Formats a time according to the given format.</p>
+
+<h3 class="function"><a name="time-2">time/2</a></h3>
+<div class="spec">
+<p><tt>time(Input, FormatStr) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="timesince-1">timesince/1</a></h3>
+<div class="spec">
+<p><tt>timesince(Date) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="timesince-2">timesince/2</a></h3>
+<div class="spec">
+<p><tt>timesince(Date, Comparison) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="timeuntil-1">timeuntil/1</a></h3>
+<div class="spec">
+<p><tt>timeuntil(Date) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="timeuntil-2">timeuntil/2</a></h3>
+<div class="spec">
+<p><tt>timeuntil(Date, Comparison) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="title-1">title/1</a></h3>
+<div class="spec">
+<p><tt>title(Input) -&gt; any()</tt></p>
+</div><p>Converts a string into titlecase.</p>
+
+<h3 class="function"><a name="truncatechars-2">truncatechars/2</a></h3>
+<div class="spec">
+<p><tt>truncatechars(Input, Max) -&gt; any()</tt></p>
+</div><p>Truncates a string after a certain number of characters.</p>
+
+<h3 class="function"><a name="truncatewords-2">truncatewords/2</a></h3>
+<div class="spec">
+<p><tt>truncatewords(Input, Max) -&gt; any()</tt></p>
+</div><p>Truncates a string after a certain number of words.</p>
+
+<h3 class="function"><a name="truncatewords_html-2">truncatewords_html/2</a></h3>
+<div class="spec">
+<p><tt>truncatewords_html(Input, Max) -&gt; any()</tt></p>
+</div><p>Similar to truncatewords, except that it is aware of HTML tags.</p>
+
+<h3 class="function"><a name="unjoin-2">unjoin/2</a></h3>
+<div class="spec">
+<p><tt>unjoin(String, L) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="unordered_list-1">unordered_list/1</a></h3>
+<div class="spec">
+<p><tt>unordered_list(List) -&gt; any()</tt></p>
+</div><p>Recursively takes a self-nested list and returns an HTML unordered list -- WITHOUT opening and closing <code>&lt;ul&gt;</code> tags.</p>
+
+<h3 class="function"><a name="upper-1">upper/1</a></h3>
+<div class="spec">
+<p><tt>upper(Input) -&gt; any()</tt></p>
+</div><p>Converts a string into all uppercase.</p>
+
+<h3 class="function"><a name="urlencode-1">urlencode/1</a></h3>
+<div class="spec">
+<p><tt>urlencode(Input) -&gt; any()</tt></p>
+</div><p>Escapes a value for use in a URL.</p>
+
+<h3 class="function"><a name="urlize-1">urlize/1</a></h3>
+<div class="spec">
+<p><tt>urlize(Input) -&gt; any()</tt></p>
+</div><p>Converts URLs in text into clickable links.</p>
+
+<h3 class="function"><a name="urlize-2">urlize/2</a></h3>
+<div class="spec">
+<p><tt>urlize(Input, Trunc) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="urlizetrunc-2">urlizetrunc/2</a></h3>
+<div class="spec">
+<p><tt>urlizetrunc(Input, Trunc) -&gt; any()</tt></p>
+</div><p>Converts URLs into clickable links just like urlize, but truncates URLs longer than the given character limit.</p>
+
+<h3 class="function"><a name="wordcount-1">wordcount/1</a></h3>
+<div class="spec">
+<p><tt>wordcount(Input) -&gt; any()</tt></p>
+</div><p>Returns the number of words.</p>
+
+<h3 class="function"><a name="wordwrap-2">wordwrap/2</a></h3>
+<div class="spec">
+<p><tt>wordwrap(Input, Number) -&gt; any()</tt></p>
+</div><p>Wraps words at specified line length, uses <code>&lt;BR/&gt;</code> html tag to delimit lines</p>
+
+<h3 class="function"><a name="yesno-2">yesno/2</a></h3>
+<div class="spec">
+<p><tt>yesno(Bool, Choices) -&gt; any()</tt></p>
+</div><p>Given a string mapping values for true, false and (optionally) undefined, returns one of those strings according to the value.</p>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Обзор</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Сгенерировано EDoc, Nov 1 2012, 22:54:40.</i></p>
+</body>
+</html>

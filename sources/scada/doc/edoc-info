@@ -1,0 +1,17 @@
+{application,scada}.
+{packages,[]}.
+{modules,[bcd,cowboy_static_sendfile_opts,cron,custom_filters,fastio,
+          get_hmi32_handler,get_hmi_handler,get_itext_handler,jre64_handler,
+          jre_handler,json2,lcount,modbus_device,mysql,mysql_auth,mysql_conn,
+          mysql_recv,plists,report_loading_handler,reports,rest,rest_cowboy,
+          scada,scada_alarms,scada_app,scada_asbe,scada_asld,scada_backup,
+          scada_charge,scada_charge_level_speed,scada_charge_system,scada_db,
+          scada_db2,scada_db_mssql,scada_db_mysql,scada_driver_evaluator,
+          scada_driver_internal_memory,scada_driver_modbus,
+          scada_driver_simulator,scada_driver_snmp,scada_driver_system,
+          scada_drivers_sup,scada_logger,scada_materials,scada_memory_monitor,
+          scada_niim,scada_running_alarm_message,scada_share,scada_share_kv,
+          scada_snmp,scada_sup,scada_tag_analog,scada_tag_array,
+          scada_tag_digital,scada_tag_internal,scada_tag_string,scada_tags,
+          scada_tasks,scada_update_datetime,snmpm_net_if,tags,toppage_handler,
+          ws_handler]}.
